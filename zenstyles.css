@@ -1,0 +1,80 @@
+
+body {
+    line-height: 1.5;
+    background-size: 100% 100%;
+    background-image: url(https://images.pexels.com/photos/457881/pexels-photo-457881.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    margin: 0; 
+	padding: 0;
+}
+
+h1 {
+    text-align: center;
+    font: 200% Gabriola;
+}
+
+h2 {
+    font: 160% Gabriola;
+}
+
+h3 {
+    font: 160% Gabriola;
+}
+
+p {
+    margin: 30px;
+    font: 100% Calibri Light;
+    text-shadow: 1cm;
+    overflow-wrap: normal;
+}
+
+a:link { 
+	font-weight: bold; 
+	text-decoration: none; 
+	color: blue;
+	}
+
+a:visited { 
+	font-weight: bold; 
+	text-decoration: none; 
+	color: purple;
+	}
+
+a:hover, a:focus, a:active { 
+	text-decoration: underline; 
+	color:gold;
+	}
+
+.sidebar {
+	margin-left: 600px; 
+	position: absolute; 
+	top: 0; 
+	right: 0;
+	}
+
+footer {
+    text-align: center;
+}
+
+
+
+.select {
+    font: 200% Gabriola;
+}
+
+.sidebar li {
+    font: 110% Calibri Light;
+}
+
+.sidebar .wrapper { 
+    font: 12px Calibri Light; 
+    padding: 10px; 
+    margin-top: 0px; 
+    width: 130px; 
+    }
+
+.page-wrapper {
+    margin: 25pt;
+    margin-right: 120pt;
+}
