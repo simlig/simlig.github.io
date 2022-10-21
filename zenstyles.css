@@ -15,7 +15,7 @@ body {
 
 h1 {
     text-align: center;
-    font: 330% Gabriola;
+    font: 285% Gabriola;
     
 }
 
@@ -76,7 +76,7 @@ footer {
 }
 
 .sidebar .wrapper { 
-    font: 12px Calibri Light; 
+    font: 11px Calibri Light; 
     padding: 10px; 
     margin-top: 0px; 
     width: 130px; 
@@ -86,21 +86,6 @@ footer {
 .page-wrapper {
     margin: 25pt;
     margin-right: 120pt;
-}
-
-.intro {
-    background-color: lightblue;
-    border-style: ridge;
-    border-color: rgb(79, 79, 241);
-    border-width: 30px;
-    margin-bottom: 60px;
-}
-
-.preamble {
-    background-color: lightblue;
-    border-style: ridge;
-    border-color: rgb(79, 79, 241);
-    border-width: 10px;
 }
 
 .explanation {
@@ -135,4 +120,12 @@ footer {
     border-style: ridge;
     border-color: rgb(79, 79, 241);
     border-width: 30px;
+}
+
+section {
+    background-color: lightblue;
+    border-style: ridge;
+    border-color: rgb(79, 79, 241);
+    border-width: 30px;
+    margin-bottom: 60px;
 }
