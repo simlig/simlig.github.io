@@ -15,7 +15,8 @@ body {
 
 h1 {
     text-align: center;
-    font: 200% Gabriola;
+    font: 330% Gabriola;
+    
 }
 
 h2 {
@@ -55,6 +56,10 @@ a:hover, a:focus, a:active {
 	position: absolute; 
 	top: 0; 
 	right: 0;
+    border-style: ridge;
+    border-color: rgb(79, 79, 241);
+    border-width: 6px;
+    margin-top: 35px;
 	}
 
 footer {
@@ -81,4 +86,53 @@ footer {
 .page-wrapper {
     margin: 25pt;
     margin-right: 120pt;
+}
+
+.intro {
+    background-color: lightblue;
+    border-style: ridge;
+    border-color: rgb(79, 79, 241);
+    border-width: 30px;
+    margin-bottom: 60px;
+}
+
+.preamble {
+    background-color: lightblue;
+    border-style: ridge;
+    border-color: rgb(79, 79, 241);
+    border-width: 10px;
+}
+
+.explanation {
+    background-color: lightblue;
+    border-style: ridge;
+    border-color: rgb(79, 79, 241);
+    border-width: 30px;
+    margin-bottom: 60px;
+
+}
+
+.participation {
+    background-color: lightblue;
+    border-style: ridge;
+    border-color: rgb(79, 79, 241);
+    border-width: 30px;
+    margin-bottom: 60px;
+
+}
+
+.benefits {
+    background-color: lightblue;
+    border-style: ridge;
+    border-color: rgb(79, 79, 241);
+    border-width: 30px;
+    margin-bottom: 60px;
+
+}
+
+.requirements {
+    background-color: lightblue;
+    border-style: ridge;
+    border-color: rgb(79, 79, 241);
+    border-width: 30px;
 }
