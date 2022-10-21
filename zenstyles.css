@@ -9,7 +9,7 @@ body {
 	padding: 0;
     border-style: ridge;
     border-color: rgb(79, 79, 241);
-    border-width: 5px;
+    border-width: 2px;
 }
 
 
@@ -75,9 +75,26 @@ footer {
     padding: 10px; 
     margin-top: 0px; 
     width: 130px; 
+    background-color: lightblue;
     }
 
 .page-wrapper {
     margin: 25pt;
     margin-right: 120pt;
+}
+
+.preamble {
+    background-color: coral;
+}
+
+.explanation {
+    background-color: coral;
+}
+
+.participation {
+    background-color: coral;
+}
+
+.benefits {
+    background-color: coral;
 }
