@@ -40,7 +40,7 @@
             {
                 if(input[i].checked)
                 {   
-                    alert(input[i].value);
+                    //alert(input[i].value);
                     newValues = changeText(input[i].value)
                     document.getElementById("replace").innerText = newValues[0];
                     choice_1 = document.getElementById("path1");
@@ -48,13 +48,13 @@
                     choice_3 = document.getElementById("path3");
 
                     choice_1.value = newValues[1];
-                    alert(newValues[1]);
+                    //alert(newValues[1]);
 
                     choice_2.value = newValues[2];
-                    alert(newValues[2]);
+                    //alert(newValues[2]);
 
                     choice_3.value = newValues[3];
-                    alert(newValues[3]);
+                    //alert(newValues[3]);
 
 
                     document.getElementById("path1lb").innerText = newValues[1];
@@ -64,9 +64,8 @@
 
 
                     alert(newValues[0]);
-                    //alert(newValues[1]);
-                    //alert(newValues[2]);
-                    //alert(newValues[3]);
+                    alert(newValues[1]);
+                    alert(newValues[2]);
 
 
                 }
@@ -81,14 +80,17 @@
             {
                 if (providedText == key)
                 {
-                    optionsArray.push(wordMap.get(providedText)[Math.floor(Math.random() * (wordMap.size + 1))]);
-                    
-                    // PROBLEM IS HERE WTF
-                    var poo = wordMap.get(optionsArray[0])
+                    alert(providedText);
+                    optionsArray.push(wordMap.get(providedText)[0]);
+                    alert(optionsArray[0])
 
-                    optionsArray.push(wordMap.get(optionsArray[0]));
-                    optionsArray.push(wordMap.get(optionsArray[0]));
-                    optionsArray.push(wordMap.get(optionsArray[0]));
+                    //Math.floor(Math.random() * (wordMap.size + 1))
+                    var split = wordMap.get(optionsArray[0]).toString().split(",");
+
+                    optionsArray.push(split[0]);
+                    optionsArray.push(split[1]);
+                    optionsArray.push(split[2]);
+
                 }
             }
             return optionsArray
@@ -96,11 +98,49 @@
 
         function createText()
         {
-            populationMap = new Map([["Path 1", [
-                    "As you continue down the path, you hear the sound of rushing water and the path ahead becomes difficult to see, as mist covers the road. How would you like to procede?"]],
-                    ["As you continue down the path, you hear the sound of rushing water and the path ahead becomes difficult to see, as mist covers the road. How would you like to procede?",
+            populationMap = new Map(
                 [
-                    "Approach slowly", "Start to crawl forward", "Just run"]]]);
+                    [
+                        "Path 1", 
+                        [
+                            "As you continue down the path, you hear the sound of rushing water and the path ahead becomes difficult to see, as mist covers the road. How would you like to procede?"
+                        ],
+                    ],
+                    [
+                        "As you continue down the path, you notice a mountain range in the distance and from what you can see, the path leads to its base. However, night is beginning to creep in. How would you like to procede?",
+                        [
+                            "Make camp for the night", "Continue onwards", "Turn back"
+                        ],
+
+                    ],
+                    [
+                        "Path 2",
+                        [
+                            "As you continue down the path, you notice a mountain range in the distance and from what you can see, the path leads to its base. However, night is beginning to creep in. How would you like to procede?"
+                        ],
+                    ],
+                    [
+                        "Make camp for the night",
+                        [
+                            "Morning comes, but your stomach starts to rumble. How do you want to procede?", "Morning comes, but you realize there are footprints next to your camp. How do you want to procede?", "Morning comes, but a heavy fog rolled in while you were sleeping"
+                        ],
+                    ],
+                    [
+                        "Morning comes, but your stomach starts to rumble. How do you want to procede?",
+                        [
+                            "Do not", "Do", "Stop"
+                        ],
+                    ],   
+                    [
+                        "As you continue down the path, you hear the sound of rushing water and the path ahead becomes difficult to see, as mist covers the road. How would you like to procede?",
+                        [
+                            "Approach slowly",
+                            "Start to crawl forward",
+                            "Just run"
+                        ],
+                    ]
+                ]
+                );
             return populationMap
         }
     </script>
