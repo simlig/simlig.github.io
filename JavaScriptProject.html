@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" media="screen" href="javascriptcss.css">
+
+<style>
+    
+</style>
+
+<title>"Choose Your Adventure!</title>
+<body>
+    <h1>Choose your own adventure!</h1>
+    <p id="replace">
+        You find yourself on a long journey to the other side of the country and find yourself having to make a choice
+        between four branching paths. Unfortunately, you must make the choice without knowing the path that lies ahead
+        or what obstacles you might encounter...
+    </p>
+
+    <form>
+        <input type="radio" id="path1" name="user_choice" value="Path 1">
+        <label id="path1lb" for="path1">Path 1</label><br>
+
+        <input type="radio" id="path2" name="user_choice" value="Path 2">
+        <label id="path2lb" for="path2">Path 2</label><br>
+
+        <input type="radio" id="path3" name="user_choice" value="Path 3">
+        <label id="path3lb" for="path3">Path 3</label><br>
+
+        <button type="button" onclick="getInputValue();">Submit Choice</button>
+    </form>
+
+      <script>
+        function getInputValue()
+        {
+            // Selecting the input element and get its value 
+
+            var input = document.getElementsByName('user_choice');
+              
+            for(i = 0; i < input.length; i++)
+            {
+                if(input[i].checked)
+                {   
+                    alert(input[i].value);
+                    newValues = changeText(input[i].value)
+                    document.getElementById("replace").innerText = newValues[0];
+                    choice_1 = document.getElementById("path1");
+                    choice_2 = document.getElementById("path2");
+                    choice_3 = document.getElementById("path3");
+
+                    choice_1.value = newValues[1];
+                    alert(newValues[1]);
+
+                    choice_2.value = newValues[2];
+                    alert(newValues[2]);
+
+                    choice_3.value = newValues[3];
+                    alert(newValues[3]);
+
+
+                    document.getElementById("path1lb").innerText = newValues[1];
+                    document.getElementById("path2lb").innerText = newValues[2];
+                    document.getElementById("path3lb").innerText = newValues[3];
+
+
+
+                    alert(newValues[0]);
+                    //alert(newValues[1]);
+                    //alert(newValues[2]);
+                    //alert(newValues[3]);
+
+
+                }
+            }
+        }
+
+        function changeText(providedText)
+        {
+            var wordMap = createText()
+            var optionsArray = []
+            for (var [key, value] of wordMap.entries())
+            {
+                if (providedText == key)
+                {
+                    optionsArray.push(wordMap.get(providedText)[Math.floor(Math.random() * (wordMap.size + 1))]);
+                    
+                    // PROBLEM IS HERE WTF
+                    var poo = wordMap.get(optionsArray[0])
+
+                    optionsArray.push(wordMap.get(optionsArray[0]));
+                    optionsArray.push(wordMap.get(optionsArray[0]));
+                    optionsArray.push(wordMap.get(optionsArray[0]));
+                }
+            }
+            return optionsArray
+        }
+
+        function createText()
+        {
+            populationMap = new Map([["Path 1", [
+                    "As you continue down the path, you hear the sound of rushing water and the path ahead becomes difficult to see, as mist covers the road. How would you like to procede?"]],
+                    ["As you continue down the path, you hear the sound of rushing water and the path ahead becomes difficult to see, as mist covers the road. How would you like to procede?",
+                [
+                    "Approach slowly", "Start to crawl forward", "Just run"]]]);
+            return populationMap
+        }
+    </script>
+
+</body>
+
+</html>
