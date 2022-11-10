@@ -4,9 +4,14 @@ h1 {
 
 p {
     margin: 30px;
-    font: 100% Calibri Light;
+    font: 120% Calibri Light;
     text-shadow: 1cm;
     overflow-wrap: normal;
+}
+
+form {
+    text-align: center;
+    font: 150% Calibri;
 }
 
 button {
@@ -17,6 +22,6 @@ button {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 24px;
     margin: 20px;
   }
