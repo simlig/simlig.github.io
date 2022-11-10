@@ -3,13 +3,12 @@
 
 <link rel="stylesheet" media="screen" href="JavaScriptProject.css">
 
-<style>
-    
-</style>
 
-<title>"Choose Your Adventure!</title>
+<title>Choose Your Adventure!</title>
 <body>
-    <h1>Choose your own adventure!</h1>
+
+
+    <h1>Choices</h1>
     <p id="replace">
         In life, no matter how many times we try to convince ourselves differently, there is always a choice.
         Now, just because there is a choice doesn't mean that it is ideal or that we will in anyway
@@ -18,9 +17,12 @@
         <br>
         <br>
 
-        You find yourself on a long journey to the other side of the country and find yourself having to make a choice
-        between two branching paths. Unfortunately, you must make the choice without knowing the path that lies ahead
-        or what obstacles you might encounter...
+        You find yourself in the middle of a wooded glen, on a sunny afternoon. Besides the sound of a gentle creek
+        lapping at its pebbles and the wind slowly rustling the leaves, all is quiet. You aren't entirely sure what
+        brought you to this place or even what this place might be, but there are two paths before you. One of them,
+        a well trodden dirt path, heads deeper in the forest. The other, laden with cobblestone and gravel, appears to head
+        into an open field. It may be pleasant now, but who knows what may happen when the glen descends into darkness.
+        Best to pick a path.
     </p>
 
     <br>
@@ -42,10 +44,9 @@
         
         <br>
 
-        <button class="buttons" type="button" onclick="getInputValue();">Submit Choice</button>
+        <button id = "change" class="buttons" type="button" onclick="getInputValue();">Submit Choice</button>
     </form>
 
-    <h2 id = "change" style = "text-align: center">Make a choice</h2>
 
       <script>
         /**
@@ -227,11 +228,11 @@
                     [
                         "Try to cross the bridge",
                         [
-                            "You tentatively approach the rickety bridge, being sure to test each board by slowly easing your weight. Progress is slow, but you manage to make it halfway across without any incidents. Just as these thoughts flit through your mind, a heavy gust rocks the bridge. You grasp the sides of the bridge with every ounce of your strength, but then you hear a loud *thwang* sound and a sudden loss of gravity. You close your eyes and pray for the best... Suddenly, the sound of the roaring waterfall disapears and you feel solid ground under your feet. You open your eyes and see two choices before you:"
+                            "You tentatively approach the rickety bridge, being sure to test each board by slowly easing your weight. Progress is slow, but you manage to make it halfway across without any incidents. Just as these thoughts flit through your mind, a heavy gust rocks the bridge. You grasp the sides of the bridge with every ounce of your strength, but then you hear a loud *thwang* sound and a sudden loss of gravity. You close your eyes and pray for the best... Suddenly, the sound of the roaring waterfall disappears and you feel solid ground under your feet. You open your eyes and see two paths before you:"
                         ],
                     ],
                     [
-                        "You tentatively approach the rickety bridge, being sure to test each board by slowly easing your weight. Progress is slow, but you manage to make it halfway across without any incidents. Just as these thoughts flit through your mind, a heavy gust rocks the bridge. You grasp the sides of the bridge with every ounce of your strength, but then you hear a loud *thwang* sound and a sudden loss of gravity. You close your eyes and pray for the best... Suddenly, the sound of the roaring waterfall disapears and you feel solid ground under your feet. You open your eyes and see two choices before you:",
+                        "You tentatively approach the rickety bridge, being sure to test each board by slowly easing your weight. Progress is slow, but you manage to make it halfway across without any incidents. Just as these thoughts flit through your mind, a heavy gust rocks the bridge. You grasp the sides of the bridge with every ounce of your strength, but then you hear a loud *thwang* sound and a sudden loss of gravity. You close your eyes and pray for the best... Suddenly, the sound of the roaring waterfall disappears and you feel solid ground under your feet. You open your eyes and see two paths before you:",
                         [
                             "Path 1",
                             "Path 2"
@@ -268,18 +269,18 @@
             return populationMap
         }
 
-        let timerIdPurple = setInterval(changeColorPurple, 1500);
-        function changeColorPurple()
-        {
-            let change = document.getElementById('change');
-            change.style.color="purple";
-        }
-
-        let timerIdBlue = setInterval(changeColor, 1500);
+        let timerId = setInterval(changeColor, 300);
         function changeColor()
         {
             let change = document.getElementById('change');
-            change.style.color="blue";
+            if (change.style.color == "red")
+            {
+                change.style.color="gold";
+            }
+            else
+            {
+                change.style.color="red";
+            }
         }
         
     </script>
