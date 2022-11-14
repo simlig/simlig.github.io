@@ -1,101 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<link rel="stylesheet" media="screen" href="javascriptcss.css">
+<link rel="stylesheet" media="screen" href="JavaScriptProject.css">
 
-<style>
-    
-</style>
 
-<title>"Choose Your Adventure!</title>
+<title>Choose Your Adventure!</title>
 <body>
-    <h1>Choose your own adventure!</h1>
+
+
+    <h1>Choices</h1>
     <p id="replace">
-        You find yourself on a long journey to the other side of the country and find yourself having to make a choice
-        between four branching paths. Unfortunately, you must make the choice without knowing the path that lies ahead
-        or what obstacles you might encounter...
+        In life, no matter how many times we try to convince ourselves differently, there is always a choice.
+        Now, just because there is a choice doesn't mean that it is ideal or that we will in anyway
+        enjoy those that we decide upon. This is a simple exercise to illistrate this idea.
+
+        <br>
+        <br>
+
+        You find yourself in the middle of a wooded glen, on a sunny afternoon. Besides the sound of a gentle creek
+        lapping at its pebbles and the wind slowly rustling the leaves, all is quiet. You aren't entirely sure what
+        brought you to this place or even what this place might be, but there are two paths before you. One of them,
+        a well trodden dirt path, heads deeper in the forest. The other, laden with cobblestone and gravel, appears to head
+        into an open field. It may be pleasant now, but who knows what may happen when the glen descends into darkness.
+        Best to pick a path.
     </p>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <form>
         <input type="radio" id="path1" name="user_choice" value="Path 1">
         <label id="path1lb" for="path1">Path 1</label><br>
 
+        
         <input type="radio" id="path2" name="user_choice" value="Path 2">
         <label id="path2lb" for="path2">Path 2</label><br>
+        
+        <br>
 
-        <input type="radio" id="path3" name="user_choice" value="Path 3">
-        <label id="path3lb" for="path3">Path 3</label><br>
-
-        <button type="button" onclick="getInputValue();">Submit Choice</button>
+        <button id = "change" class="buttons" type="button" onclick="getInputValue();">Submit Choice</button>
     </form>
 
+
       <script>
+        /**
+         * This function effectively changes the text the user sees
+         * based upon the input they provided
+         */
         function getInputValue()
         {
             // Selecting the input element and get its value 
-
             var input = document.getElementsByName('user_choice');
               
+            // Iterates over the buttons to check if they are checked
             for(i = 0; i < input.length; i++)
             {
                 if(input[i].checked)
-                {   
-                    //alert(input[i].value);
+                {  
                     newValues = changeText(input[i].value)
-                    document.getElementById("replace").innerText = newValues[0];
-                    choice_1 = document.getElementById("path1");
-                    choice_2 = document.getElementById("path2");
-                    choice_3 = document.getElementById("path3");
 
-                    choice_1.value = newValues[1];
-                    //alert(newValues[1]);
+                    // Changes the values for the paragraph
+                    if (newValues[0] != undefined)
+                    {
+                        document.getElementById("replace").innerText = newValues[0];
+                    }
+                    else
+                    {
+                        document.getElementById("replace").innerText = "Thanks for playing!";
+                    }
+    
+                    // Changes the values and text for the buttons
+                    if (newValues[1] != undefined && newValues[2] != undefined)
+                    {
+                        choice_1 = document.getElementById("path1");
+                        choice_2 = document.getElementById("path2");
 
-                    choice_2.value = newValues[2];
-                    //alert(newValues[2]);
-
-                    choice_3.value = newValues[3];
-                    //alert(newValues[3]);
-
-
-                    document.getElementById("path1lb").innerText = newValues[1];
-                    document.getElementById("path2lb").innerText = newValues[2];
-                    document.getElementById("path3lb").innerText = newValues[3];
-
-
-
-                    alert(newValues[0]);
-                    alert(newValues[1]);
-                    alert(newValues[2]);
+                        choice_1.value = newValues[1];
+                        choice_2.value = newValues[2];
 
 
+                        document.getElementById("path1lb").innerText = newValues[1];
+                        document.getElementById("path2lb").innerText = newValues[2];
+                    }
+                    else
+                    {
+                        document.getElementById("path1lb").innerText = "Path 1";
+                        document.getElementById("path2lb").innerText = "Path 2";
+                    }
                 }
             }
         }
 
+        /**
+         * This function iterates through the provided map until it finds
+         * the key matching the user's choice and then creates an array holding
+         * what the paragraph will be changed to and the next series of choices
+         */
         function changeText(providedText)
         {
+            // Map containing all of the choices
             var wordMap = createText()
+
+            // An array that is used to hold the new button choices and paragraph values
             var optionsArray = []
             for (var [key, value] of wordMap.entries())
             {
                 if (providedText == key)
                 {
-                    alert(providedText);
+                    // Adds the new paragraph
                     optionsArray.push(wordMap.get(providedText)[0]);
-                    alert(optionsArray[0])
-
-                    //Math.floor(Math.random() * (wordMap.size + 1))
+                    
                     var split = wordMap.get(optionsArray[0]).toString().split(",");
 
+                    // Adds the new choices
                     optionsArray.push(split[0]);
                     optionsArray.push(split[1]);
-                    optionsArray.push(split[2]);
-
                 }
             }
             return optionsArray
         }
 
+        /**
+         * This function just creates a map from the provided values to be used
+         * for the myriad of choices required
+         */
         function createText()
         {
             populationMap = new Map(
@@ -109,9 +143,22 @@
                     [
                         "As you continue down the path, you notice a mountain range in the distance and from what you can see, the path leads to its base. However, night is beginning to creep in. How would you like to procede?",
                         [
-                            "Make camp for the night", "Continue onwards", "Turn back"
+                            "Make camp for the night", "Continue onwards"
                         ],
 
+                    ],
+                    [
+                        "Continue onwards",
+                        [
+                            "You continue onwards, making sure you don't lose sight of the path. Eventually, you reach the mountain's base and the path begins to incline. Pushing onwards, despite your fatigue, you make it to the mouth of a cave with a warm light radiating from it. Inside, you see a furnished room, complete with a fireplace and laptop open on a round table. Intrigued, you peer at the screen and are met with the following choices:"
+                        ],
+                    ],
+                    [
+                        "You continue onwards, making sure you don't lose sight of the path. Eventually, you reach the mountain's base and the path begins to incline. Pushing onwards, despite your fatigue, you make it to the mouth of a cave with a warm light radiating from it. Inside, you see a furnished room, complete with a fireplace and laptop open on a round table. Intrigued, you peer at the screen and are met with the following choices:",
+                        [
+                            "Path 1",
+                            "Path 2"
+                        ],
                     ],
                     [
                         "Path 2",
@@ -122,27 +169,120 @@
                     [
                         "Make camp for the night",
                         [
-                            "Morning comes, but your stomach starts to rumble. How do you want to procede?", "Morning comes, but you realize there are footprints next to your camp. How do you want to procede?", "Morning comes, but a heavy fog rolled in while you were sleeping"
+                            "Morning comes, but you realize there are footprints next to your camp. How do you want to procede?"
                         ],
                     ],
                     [
-                        "Morning comes, but your stomach starts to rumble. How do you want to procede?",
+                        "Morning comes, but you realize there are footprints next to your camp. How do you want to procede?",
                         [
-                            "Do not", "Do", "Stop"
+                            "Follow the footprints",
+                            "Continue onwards"
                         ],
-                    ],   
+                    ],  
+                    [
+                        "Follow the footprints",
+                        [
+                            "You begin following the footprints and after an hour of tracking, the footprints seemingly vanish. In fact, even looking behind, you can't see any trace of the footprints. Questioning your sanity, you decide to turn back. However, you figured you could just follow the footprints back and becuase they are gone, you find yourself hopelessly lost. After wandering around for several hours, your vision starts to flicker and suddenly you find yourself back at the beginning of the two paths. Weird..."
+                        ],
+                    ],
+                    [
+                        "You begin following the footprints and after an hour of tracking, the footprints seemingly vanish. In fact, even looking behind, you can't see any trace of the footprints. Questioning your sanity, you decide to turn back. However, you figured you could just follow the footprints back and becuase they are gone, you find yourself hopelessly lost. After wandering around for several hours, your vision starts to flicker and suddenly you find yourself back at the beginning of the two paths. Weird...",
+                        [
+                            "Path 1",
+                            "Path 2"
+                        ],
+                    ],
                     [
                         "As you continue down the path, you hear the sound of rushing water and the path ahead becomes difficult to see, as mist covers the road. How would you like to procede?",
                         [
                             "Approach slowly",
-                            "Start to crawl forward",
-                            "Just run"
+                            "Run forward"
+                        ],
+                    ],
+                    [
+                        "Run forward",
+                        [
+                            "You courageously bound forward, impelled by a sense of destiny and purpose. After all, this is your story and you should be able to take it whichever way you see fit. You have guts and you aren't afraid to show them! Unfortunately, as you spring forward at record speed and tumble off a cliff, I bet you had a different interpretation of what it meant to show your guts... Anyway, you can retry by choosing either Path 1 or Path 2"
+                        ],
+                    ],
+                    [
+                        "You courageously bound forward, impelled by a sense of destiny and purpose. After all, this is your story and you should be able to take it whichever way you see fit. You have guts and you aren't afraid to show them! Unfortunately, as you spring forward at record speed and tumble off a cliff, I bet you had a different interpretation of what it meant to show your guts... Anyway, you can retry by choosing either Path 1 or Path 2",
+                        [
+                            "Path 1",
+                            "Path 2",
+                        ],
+                    ],
+                    [
+                        "Approach slowly",
+                        [
+                            "You slowly push through the dense mist and are eventually met with a roaring waterfall. Unfortunately, the path disappears and becomes a rickety rope bridge. How would you like to procede?"
+                        ],
+                    ],
+                    [
+                        "You slowly push through the dense mist and are eventually met with a roaring waterfall. Unfortunately, the path disappears and becomes a rickety rope bridge. How would you like to procede?",
+                        [
+                            "Try to cross the bridge",
+                            "Try to cross the river someplace downstream and find the path later"
+                        ],
+                    ],
+                    [
+                        "Try to cross the bridge",
+                        [
+                            "You tentatively approach the rickety bridge, being sure to test each board by slowly easing your weight. Progress is slow, but you manage to make it halfway across without any incidents. Just as these thoughts flit through your mind, a heavy gust rocks the bridge. You grasp the sides of the bridge with every ounce of your strength, but then you hear a loud *thwang* sound and a sudden loss of gravity. You close your eyes and pray for the best... Suddenly, the sound of the roaring waterfall disappears and you feel solid ground under your feet. You open your eyes and see two paths before you:"
+                        ],
+                    ],
+                    [
+                        "You tentatively approach the rickety bridge, being sure to test each board by slowly easing your weight. Progress is slow, but you manage to make it halfway across without any incidents. Just as these thoughts flit through your mind, a heavy gust rocks the bridge. You grasp the sides of the bridge with every ounce of your strength, but then you hear a loud *thwang* sound and a sudden loss of gravity. You close your eyes and pray for the best... Suddenly, the sound of the roaring waterfall disappears and you feel solid ground under your feet. You open your eyes and see two paths before you:",
+                        [
+                            "Path 1",
+                            "Path 2"
+                        ],
+                    ],
+                    [
+                        "Try to cross the river someplace downstream and find the path later",
+                        [
+                            "You head down the cliffside until you reach the beach. However, just glancing at the river, based upon its speed, it might be risky to try to cross it. There also doesn't appear to be any water vessels or tools you could utilize to chop down any trees. If you cross, you'd just have to swim. What would you like to do?"
+                        ],
+                    ],
+                    [
+                        "You head down the cliffside until you reach the beach. However, just glancing at the river, based upon its speed, it might be risky to try to cross it. There also doesn't appear to be any water vessels or tools you could utilize to chop down any trees. If you cross, you'd just have to swim. What would you like to do?",
+                        [
+                            "Try to cross the bridge",
+                            "Cross the river"
+                        ],
+                    ],
+                    [
+                        "Cross the river",
+                        [
+                            "As you approach the water, you brace yourself for the difficult path ahead. Dipping your hand in the side, you discover that the temperature is rather moderate. Small mercies, right? You position yourself as close to the base of the waterfall as possible, so that you have the most amount of time before the river drags you downstream. No time like the present! You dive in head first and ferociously doggy paddle your way to the opposite bank. You really should have paid attention during swimming lessons! That being said, you are still making progress and you've made it over halfway across the river. What you didn't account for, however, was how fast this river was and how rapidly it would carry you downstream. You glance downstream and don't have any time to react before you are dragged under and tossed about by the whims of the current. Your vision fades to black and only four words cross your mind:"
+                        ],
+                    ],
+                    [
+                        "As you approach the water, you brace yourself for the difficult path ahead. Dipping your hand in the side, you discover that the temperature is rather moderate. Small mercies, right? You position yourself as close to the base of the waterfall as possible, so that you have the most amount of time before the river drags you downstream. No time like the present! You dive in head first and ferociously doggy paddle your way to the opposite bank. You really should have paid attention during swimming lessons! That being said, you are still making progress and you've made it over halfway across the river. What you didn't account for, however, was how fast this river was and how rapidly it would carry you downstream. You glance downstream and don't have any time to react before you are dragged under and tossed about by the whims of the current. Your vision fades to black and only four words cross your mind:",
+                        [
+                            "Path 1",
+                            "Path 2"
                         ],
                     ]
                 ]
                 );
             return populationMap
         }
+
+        let timerId = setInterval(changeColor, 300);
+        function changeColor()
+        {
+            let change = document.getElementById('change');
+            if (change.style.color == "red")
+            {
+                change.style.color="gold";
+            }
+            else
+            {
+                change.style.color="red";
+            }
+        }
+        
     </script>
 
 </body>
