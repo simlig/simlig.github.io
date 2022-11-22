@@ -1,0 +1,78 @@
+body {
+    background-color: #6E6E6E;
+    
+}
+
+p {
+    text-align: left;
+    color: white;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+li {
+    color: white;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+h2 {
+    color: white;
+}
+
+h4 {
+    text-align: left;
+}
+
+div {
+    color: white;
+}
+
+#resume {
+    background-color: blue;
+    border-color: white;
+    border-width: 5px;
+    border-style: groove;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.header {
+    padding: 5px;
+    text-align: center;
+    background: #48c70d;
+    color: white;
+    font-size: 20px;
+}
+
+.footer {
+    padding: 5px;
+    text-align: center;
+    background: #48c70d;
+    color: white;
+    font-size: 20px;
+}
+
+a:link { 
+	font-weight: bold; 
+	text-decoration: none; 
+	color: blue;
+	}
+
+a:visited { 
+	font-weight: bold; 
+	text-decoration: none; 
+	color: purple;
+	}
+
+a:hover, a:focus, a:active { 
+	text-decoration: underline; 
+	color:gold;
+}
+
+.col {
+    padding: 10px;
+}
