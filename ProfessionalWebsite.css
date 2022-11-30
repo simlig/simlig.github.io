@@ -1,7 +1,15 @@
 body {
-    background-color: #6E6E6E;
+    background-color: black;
     
 }
+
+#center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 650px;
+  }
+
 
 p {
     text-align: left;

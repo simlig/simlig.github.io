@@ -6,9 +6,7 @@ function embedQuote(quote, author)
 
 function fetchQuotes()
 {
-    fetch("https://api.quotable.io/random")
-    .then((response) => response.json())
-    .then((quote) => embedQuote(quote.content, quote.author));
+    fetch("https://api.quotable.io/random").then((response) => response.json()).then((quote) => embedQuote(quote.content, quote.author));
 }
 
 fetchQuotes()
