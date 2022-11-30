@@ -10,6 +10,20 @@ body {
     height: 650px;
   }
 
+#target{
+    margin-top: 20px;
+    margin-left: 150px;
+    background-color: black;
+    position: relative; 
+    display: block;
+  }
+
+.carousel-indicators{
+    display: flex;
+    justify-content: bottom;
+    align-items: bottom;
+    height: -100px;
+   }
 
 p {
     text-align: left;
