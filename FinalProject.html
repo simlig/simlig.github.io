@@ -38,53 +38,84 @@
                     </div>
 
                     <div class="item">
-                        <p>I love all things classical and technlogical</p>
+                        <p>
+                            Since I love all things classical
+                            <br>
+                            and technlogical, I figured I'd
+                            <br>
+                            incorporate both
+                        </p>
                     </div>
 
                     <div class="item">
-                        <p>Consider this quote:</p>
+                        <p>
+                            Consider this quote:
+                        </p>
                     </div>
 
                     <div class="item" id="quote">
-                        <p></p>
+                        <p>
+
+                        </p>
                     </div>
 
                     <div class="item">
-                        <p>What do you think?</p>
+                        <p>
+                            What do you think?
+                        </p>
                     </div>
 
                     <div class="item">
-                        <p>Has it inspired you?</p>
+                        <p>
+                            Has it inspired you?
+                        </p>
                     </div>
 
                     <div class="item">
-                        <p>Made you feel something?</p>
+                        <p>
+                            Made you feel something?
+                        </p>
                     </div>
 
                     <div class="item">
-                        <p>If not, perhaps this will</p>
+                        <p>
+                            If not, perhaps this will
+                        </p>
                     </div>
 
                     <div class="item">
-                        <svg id='target_intro' class='img-responsive' viewBox="0 0 1500 700"></svg>
-                        <p>This is a target. Play around with it</p>
+                        <svg class='img-responsive' id='target_intro' viewBox="0 0 1500 700"></svg>
+                        <p>
+                            This is a target. Play around with it
+                        </p>
                     </div>
 
                     <div class="item">
-                        <p>Let's practice your aim</p>
+                        <p>
+                            Let's practice your aim
+                        </p>
                     </div>
 
                     <div class="item">
-                        <svg id='target' class='img-responsive' viewBox="0 0 1500 700"></svg>
+                        <svg class='img-responsive' id='target' viewBox="0 0 1500 700"></svg>
                     </div>
 
                     <div class="item">
-                        <p>Nicely done!</p>
+                        <p>
+                            Nicely done!
+                        </p>
                     </div>
 
                     <div class="item">
-                        <svg id='moving_target' class='img-responsive' viewBox="0 0 1500 700"></svg>
+                        <svg class='img-responsive' id='moving_target' viewBox="0 0 1500 700"></svg>
                     </div>
+
+                    <div class="item">
+                        <p>
+                            Let's pickup the pace
+                        </p>
+                    </div>
+
 
                    
 
@@ -104,11 +135,19 @@
         </div>
     </div>
 
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <!-- This file is from the JavaScript Library Snap SVG. Its used to create SVG art.
+        I've gone ahead and downloaded the src file for snap svg, as the only option
+        was a download system. -->
     <script src="snap.svg-min.js"></script>
+
     <script>
 
-        // First target encountered
+        /**
+         * The first target encountered
+         */
         var snap = Snap("#target_intro")
 
         // Creates the four circles that make up the target
@@ -132,7 +171,9 @@
         startingTargetGroup.touchstart(mobileTouch);
 
 
-        // The shooting range target
+        /**
+         * The shooting range target
+         */
         var targetSnap = Snap("#target");
         var shootingRangeCircle1 = targetSnap.circle(600, 350, 150);
         var shootingRangeCircle2 = targetSnap.circle(600, 350, 100);
@@ -150,7 +191,9 @@
         shootingRangeGroup.hover(hoverOver, hoverOut);
 
 
-        // The circles used for the moving target
+        /**
+         * The slow moving target 
+         */
         var movingTargetSnap = Snap("#moving_target");
         var movingTarget1 = movingTargetSnap.circle(600, 350, 150);
         var movingTarget2 = movingTargetSnap.circle(600, 350, 100);
@@ -163,12 +206,27 @@
 
 
         var movingGroup = movingTargetSnap.g(movingTarget1, movingTarget2, movingTarget3, movingTarget4);
+        movingGroup.hover(hoverOver, hoverOut);
 
         let value = 0;
-        var timerId = setInterval(animateTarget, 30);
+        var timerId = setInterval(animateTarget, 20);
         var boolean = true;
+        var clicked = false;
 
+        movingGroup.mousedown(clear);
 
+        /**
+         * Stops the animation 
+         */
+        function clear()
+        {
+            clearInterval(timerId);
+            clicked = true;
+        }
+
+        /**
+         * Creates an animation for the target 
+         */
         function animateTarget()
         {
             if (value < 500 && boolean)
@@ -180,7 +238,7 @@
             }
             else
             {
-                if (value > -200 && !boolean)
+                if (value > -400 && !boolean)
                 {
                     for (var i = value; i > value - 10; i--)
                     {
@@ -189,8 +247,10 @@
                 }
 
             }
+
             value = i;
-            if (value == -200)
+
+            if (value == -400)
             {
                 boolean = true;
             }
@@ -199,8 +259,6 @@
                 boolean = false;
             }
         }
-
-
 
         /**
          * Gets a random integer between the min and max
@@ -215,7 +273,7 @@
          */
         function shootingRange()
         {
-            shootingRangeGroup.transform('t' + (getRandInteger(-600, 600)) + ',' + (getRandInteger(-300, 300)));
+            shootingRangeGroup.transform('t' + (getRandInteger(-400, 600)) + ',' + (getRandInteger(-100, 250)));
         }
 
         /**
@@ -282,9 +340,9 @@
          */
         function onDrag(direction_x, direction_y)
         {
-            var transform_direction_x;
-            var transform_direction_y;
-            var snapInvertedMatrix = this.transform().diffMatrix.invert();
+            let transform_direction_x;
+            let transform_direction_y;
+            let snapInvertedMatrix = this.transform().diffMatrix.invert();
 
             transform_direction_x = snapInvertedMatrix.x(direction_x, direction_y);
             transform_direction_y = snapInvertedMatrix.y(direction_x, direction_y);
@@ -359,31 +417,19 @@
 
         function embedQuote(quote, author)
         {
-            var wholeness = quote + "    - " + author;
-            document.getElementById('quote').innerHTML = wholeness;
+            let quote_and_credit = quote + "    - " + author;
+            document.getElementById('quote').innerHTML = quote_and_credit;
         }
 
         function fetchQuotes()
         {
-            fetch("https://api.quotable.io/random").then((response) => response.json()).then((quote) => embedQuote(quote.content, quote.author));
+            fetch("https://api.quotable.io/random").then((
+                response) => response.json()).then((
+                quote) => embedQuote(quote.content, quote.author));
         }
 
         fetchQuotes()
 
-        //bigCircle.animate({x: 10}, 1000);
-        // Now lets create another small circle:
-        //var smallCircle = s.circle(100, 150, 70);
-
-        /**function blink()
-        {
-            bigCircle.animate({ry:1}, 220, function()
-            {
-                s.animate({ry: 90}, 300);
-            });
-        };
-        
-        // Recall blink method once every 3 seconds
-        let timerId = setInterval(blink, 3000);*/
     </script>
 </body>
 </html>
