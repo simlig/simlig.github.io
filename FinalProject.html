@@ -126,104 +126,6 @@
     <script src="https://raw.githubusercontent.com/adobe-webplatform/Snap.svg/master/dist/snap.svg-min.js" integrity="sha384-IG6MG4rPL+eDfYZHaBp/vk1f2AxzPnzf3entBDT0sAIf2GawbqZCILr+1ypL2zyh" crossorigin="anonymous"></script>
     <script src="snap.svg-min.js"></script>
     <script>
-        //var img = paper.image('Sam.svg', 100, 100, 100, 100);
-        
-
-        //var s = Snap("#circle")
-        var s = Snap("#target")
-        //var bigCircle = s.circle(150, 150, 100);
-        var circle = s.circle(600, 350, 100);
-
-        circle.attr({
-            fill: "tomato",
-            stroke: "cornflowerblue",
-            strokeWidth: 20
-        });
-
-        // Hovering
-        circle.hover(hoverOver, hoverOut);
-
-        // Clicking
-        circle.mouseup(mouseUp);
-        circle.mousedown(mouseDown);
-
-        // Draging
-        circle.drag(onDrag, onBegin);
-
-        // Mobile devices
-        circle.touchstart(touchStartHandler);
-        circle.touchmove(touchMoveHandler);
-
-        // Handlers :
-
-        /**
-         * Touching for mobile devices
-         */
-        function touchStartHandler(){
-            circle.attr({
-                fill: "white",
-                stroke: "purple"
-            });
-        }
-
-
-        function touchMoveHandler(){
-            circle.attr({
-                fill: "purple",
-                stroke: "white"
-            });
-        }
-
-        function onDrag(direction_x, direction_y)
-        {
-            var transform_direction_x;
-            var transform_direction_y;
-            var snapInvertedMatrix = this.transform().diffMatrix.invert();
-
-            transform_direction_x = snapInvertedMatrix.x(direction_x, direction_y);
-            transform_direction_y = snapInvertedMatrix.y(direction_x, direction_y);
-            this.transform("t" + [transform_direction_x, transform_direction_y] + this.data('ot'));
-        }
-
-        function onBegin()
-        {
-            this.data('ot', this.transform().local);
-        }
-
-        // HOVER
-        function hoverOver()
-        {
-            document.body.style.cursor = "pointer";
-            circle.attr({
-                fill: "cornflowerblue",
-                stroke: "tomato"
-            });
-        }
-
-        function hoverOut() {
-        document.body.style.cursor = "default";
-        circle.attr({
-            fill: "tomato",
-            stroke: "cornflowerblue"
-        });
-        }
-
-        //CLICK
-        function mouseDown() {
-        circle.attr({
-            fill: "grey",
-            stroke: "dimgrey"
-        });
-        }
-
-        function mouseUp() {
-        circle.attr({
-            fill: "cornflowerblue",
-            stroke: "tomato"
-        });
-        }
-
-
         var s = Snap("#target")
         //var bigCircle = s.circle(150, 150, 100);
         var circle1 = s.circle(600, 350, 300);
@@ -231,15 +133,7 @@
         var circle3 = s.circle(600, 350, 100);
         var circle4 = s.circle(600, 350, 20);
 
-        circle1.drag(onDrag, onBegin);
-        circle2.drag(onDrag, onBegin);
-        circle3.drag(onDrag, onBegin);
-        circle4.drag(onDrag, onBegin);
-
-
-
-        // Each circle gets some basic attributes :
-
+        // Each circle's basic attributes
         circle1.attr({
             fill: "blue",
             stroke: "white",
@@ -257,11 +151,154 @@
             stroke: "black",
             strokeWidth: 10
         });
-        bigCircle.attr({
-            fill: "#bada55",
-            stroke: "#000",
-            strokeWidth: 5
-        });
+
+        var group = s.g(circle1, circle2, circle3, circle4)
+
+        group.drag(onDrag, onBegin);
+        group.hover(hoverOver, hoverOut);
+        group.mouseup(mouseUp);
+        group.mousedown(mouseDown);
+
+        group.touchstart(mobileTouch);
+        group.touchmove(mobileDrag);
+
+        // Functions for SVG Manipulation
+        /**
+         * Touching for mobile devices
+         */
+        function mobileTouch()
+        {
+            circle1.attr({
+                fill: "red",
+                stroke: "red"
+            });
+
+            circle2.attr({
+                fill: "red",
+                stroke: "red"
+            });
+
+            circle3.attr({
+                fill: "red",
+                stroke: "red"
+            });
+        }
+
+        /**
+         * Dragging for mobile devices
+         */
+        function mobileDrag()
+        {
+            circle1.attr({
+                fill: "blue",
+                stroke: "white"
+            });
+            
+            circle2.attr({
+                fill: "white",
+                stroke: "black"
+            })
+
+            circle3.attr({
+                fill: "red",
+                stroke: "black"
+            })
+        }
+
+        /**
+         * Dragging for PCs
+         */
+        function onDrag(direction_x, direction_y)
+        {
+            var transform_direction_x;
+            var transform_direction_y;
+            var snapInvertedMatrix = this.transform().diffMatrix.invert();
+
+            transform_direction_x = snapInvertedMatrix.x(direction_x, direction_y);
+            transform_direction_y = snapInvertedMatrix.y(direction_x, direction_y);
+            this.transform("t" + [transform_direction_x, transform_direction_y] + this.data('ot'));
+        }
+
+        /**
+         * Sets where to begin transforming for dragging
+         */
+        function onBegin()
+        {
+            this.data('ot', this.transform().local);
+        }
+
+        /**
+         * Dynamic hover when user's cursor is over the svg image
+         */
+        function hoverOver()
+        {
+            document.body.style.cursor = "pointer";
+        }
+
+        /**
+         * Dynamic hover out, when user's cursor moves off of svg image
+         */
+        function hoverOut()
+        {
+            document.body.style.cursor = "default";
+            circle1.attr({
+                fill: "blue",
+                stroke: "white"
+            });
+            
+            circle2.attr({
+                fill: "white",
+                stroke: "black"
+            })
+
+            circle3.attr({
+                fill: "red",
+                stroke: "black"
+            })
+        }
+
+        /**
+         * Dynamic options to svg when user clicks
+         */
+        function mouseDown()
+        {
+            circle1.attr({
+                fill: "red",
+                stroke: "red"
+            });
+
+            circle2.attr({
+                fill: "red",
+                stroke: "red"
+            })
+
+            circle3.attr({
+                fill: "red",
+                stroke: "red"
+            })
+        }
+
+        /**
+         * Dynamic option for svg when user releases click
+         */
+        function mouseUp()
+        {
+            circle1.attr({
+                fill: "blue",
+                stroke: "white"
+            });
+            
+            circle2.attr({
+                fill: "white",
+                stroke: "black"
+            })
+
+            circle3.attr({
+                fill: "red",
+                stroke: "black"
+            })
+        }
+
         //bigCircle.animate({x: 10}, 1000);
         // Now lets create another small circle:
         //var smallCircle = s.circle(100, 150, 70);
