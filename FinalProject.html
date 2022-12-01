@@ -81,8 +81,6 @@
         </div>
     </div>
 
-
-
     <!-- <svg id="grump" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
         <style>
           .small {
@@ -226,13 +224,18 @@
         }
 
 
-        /**
-                var s = Snap("#target")
+        var s = Snap("#target")
         //var bigCircle = s.circle(150, 150, 100);
         var circle1 = s.circle(600, 350, 300);
         var circle2 = s.circle(600, 350, 200);
         var circle3 = s.circle(600, 350, 100);
         var circle4 = s.circle(600, 350, 20);
+
+        circle1.drag(onDrag, onBegin);
+        circle2.drag(onDrag, onBegin);
+        circle3.drag(onDrag, onBegin);
+        circle4.drag(onDrag, onBegin);
+
 
 
         // Each circle gets some basic attributes :
@@ -259,7 +262,6 @@
             stroke: "#000",
             strokeWidth: 5
         });
-        */
         //bigCircle.animate({x: 10}, 1000);
         // Now lets create another small circle:
         //var smallCircle = s.circle(100, 150, 70);
