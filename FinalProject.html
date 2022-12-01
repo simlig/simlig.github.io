@@ -62,6 +62,14 @@
                     </div>
 
                     <div class="item">
+                        <svg id='target_intro' class='img-responsive' viewBox="0 0 1500 700"></svg>
+                    </div>
+
+                    <div class="item">
+                        <p style="text-align: center">Let's practice your aim</p>
+                    </div>
+
+                    <div class="item">
                         <svg id='target' class='img-responsive' viewBox="0 0 1500 700"></svg>
                     </div>
 
@@ -81,86 +89,100 @@
         </div>
     </div>
 
-    <!-- <svg id="grump" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
-        <style>
-          .small {
-            font: italic 13px sans-serif;
-            fill: white;
-          }
-          .heavy {
-            font: bold 13px sans-serif;
-            fill: white;
-          }
-      
-          /* Note that the color of the text is set with the    *
-           * fill property, the color property is for HTML only */
-          .Rrrrr {
-            font: italic 13px serif;
-            fill: red;
-          }
-        </style>
-      
-        <text x="20" y="35" class="small">My</text>
-        <text x="40" y="35" class="heavy">cat</text>
-        <text x="60" y="35" class="small">is</text>
-        <text x="80" y="35" class="Rrrrr">Grumpy!</text>
-      </svg>
-
-    <h2>About me</h2>
-    <p>
-        I'm a senior Honors and Computer Science student at George Fox University.
-        Throughout my time at Fox, I have developed a deep passion for learning all things technlogical and classical.
-        I have a special fascination with the topics of artificial intelligence, free will and the telos of mankind.
-        I am a very creative person and often spend my time tinkering on web development projects or writing poetry.
-        I love meeting new people and working together to accomplish a common goal or to learn new perspectives and viewpoints.
-    </p>
-
-    <p id="quote" style="text-align: center"></p>
-
-    <br>
-
-    <p class="footer"> <a href="Home.html">Home</a> <a href="Resume.html">Resume</a> </p> -->
-
     <script src="ProfessionalWebsite.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="https://raw.githubusercontent.com/adobe-webplatform/Snap.svg/master/dist/snap.svg-min.js" integrity="sha384-IG6MG4rPL+eDfYZHaBp/vk1f2AxzPnzf3entBDT0sAIf2GawbqZCILr+1ypL2zyh" crossorigin="anonymous"></script>
     <script src="snap.svg-min.js"></script>
     <script>
-        var s = Snap("#target")
-        //var bigCircle = s.circle(150, 150, 100);
-        var circle1 = s.circle(600, 350, 300);
-        var circle2 = s.circle(600, 350, 200);
-        var circle3 = s.circle(600, 350, 100);
-        var circle4 = s.circle(600, 350, 20);
 
-        // Each circle's basic attributes
-        circle1.attr({
-            fill: "blue",
-            stroke: "white",
-            strokeWidth: 10
-        });
+        // First target encountered
+        var snap = Snap("#target_intro")
 
-        circle2.attr({
-            fill: "white",
-            stroke: "black",
-            strokeWidth: 20
-        });
+        // Creates the four circles that make up the target
+        var circle1 = snap.circle(600, 350, 300);
+        var circle2 = snap.circle(600, 350, 200);
+        var circle3 = snap.circle(600, 350, 100);
+        var circle4 = snap.circle(600, 350, 20);
 
-        circle3.attr({
-            fill: "red",
-            stroke: "black",
-            strokeWidth: 10
-        });
+        // Sets the attribute for all circles required
+        setCircle1(circle1)
+        setCircle2(circle2)
+        setCircle3(circle3)
 
-        var group = s.g(circle1, circle2, circle3, circle4)
-
+        // Groups all circles together, so that these functions can be
+        // used on any part of the target
+        var group = snap.g(circle1, circle2, circle3, circle4)
         group.drag(onDrag, onBegin);
         group.hover(hoverOver, hoverOut);
         group.mouseup(mouseUp);
         group.mousedown(mouseDown);
-
         group.touchstart(mobileTouch);
-        group.touchmove(mobileDrag);
+
+
+        var targetSnap = Snap("#target");
+        var targetCircle1 = targetSnap.circle(600, 350, 150);
+        var targetCircle2 = targetSnap.circle(600, 350, 100);
+        var targetCircle3 = targetSnap.circle(600, 350, 50);
+        var targetCircle4 = targetSnap.circle(600, 350, 20);
+
+        setCircle1(targetCircle1);
+        setCircle2(targetCircle2);
+        setCircle3(targetCircle3);
+
+
+        var newgroup = targetSnap.g(targetCircle1, targetCircle2, targetCircle3, targetCircle4)
+        newgroup.mousedown(shootingRange)
+
+        //newgroup.transform('t' + 100 + ',' + 100)
+        //newgroup.transform("t" + [1000, 1000] + this.data('ot'))
+
+
+        function getRandInteger(min, max)
+        {
+            return Math.floor(Math.random() * (max - min + 1) ) + min;
+        }
+
+        function shootingRange()
+        {
+            newgroup.transform('t' + (getRandInteger(-600, 600)) + ',' + (getRandInteger(-300, 300)));
+        }
+
+        /**
+         * Creates the colors for the target on the outermost circle
+         */
+        function setCircle1(providedCircle)
+        {
+            // Each circle's basic attributes
+            providedCircle.attr({
+                fill: "blue",
+                stroke: "white",
+                strokeWidth: 10
+            });
+        }
+
+        /**
+         * Creates the colors for the target on the second-outermost circle 
+         */
+        function setCircle2(providedCircle)
+        {
+            providedCircle.attr({
+                fill: "white",
+                stroke: "black",
+                strokeWidth: 20
+            });
+        }
+
+        /**
+         * Creates the colors for the target on the second to innermost circle
+         */
+        function setCircle3(providedCircle)
+        {
+            providedCircle.attr({
+                fill: "red",
+                stroke: "black",
+                strokeWidth: 10
+            });
+        }
 
         // Functions for SVG Manipulation
         /**
@@ -182,27 +204,6 @@
                 fill: "red",
                 stroke: "red"
             });
-        }
-
-        /**
-         * Dragging for mobile devices
-         */
-        function mobileDrag()
-        {
-            circle1.attr({
-                fill: "blue",
-                stroke: "white"
-            });
-            
-            circle2.attr({
-                fill: "white",
-                stroke: "black"
-            })
-
-            circle3.attr({
-                fill: "red",
-                stroke: "black"
-            })
         }
 
         /**
@@ -241,20 +242,6 @@
         function hoverOut()
         {
             document.body.style.cursor = "default";
-            circle1.attr({
-                fill: "blue",
-                stroke: "white"
-            });
-            
-            circle2.attr({
-                fill: "white",
-                stroke: "black"
-            })
-
-            circle3.attr({
-                fill: "red",
-                stroke: "black"
-            })
         }
 
         /**
