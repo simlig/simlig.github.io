@@ -30,48 +30,63 @@
                 <div class="carousel-inner">
 
                     <div class="item active"> 
-                        <p style="text-align: center">My name is Sam</p>
+                        <p>My name is Sam</p>
                     </div>
 
                     <div class="item">
-                        <p style="text-align: center">This is my website</p>
+                        <p>This is my website</p>
                     </div>
 
                     <div class="item">
-                        <p style="text-align: center">I love all things classical and technlogical</p>
+                        <p>I love all things classical and technlogical</p>
                     </div>
 
                     <div class="item">
-                        <p style="text-align: center">Consider this quote:</p>
+                        <p>Consider this quote:</p>
                     </div>
 
                     <div class="item" id="quote">
-                        <p style="text-align: center"></p>
+                        <p></p>
                     </div>
 
                     <div class="item">
-                        <p style="text-align: center">What do you think?</p>
+                        <p>What do you think?</p>
                     </div>
 
                     <div class="item">
-                        <p style="text-align: center">Has it inspired you?</p>
+                        <p>Has it inspired you?</p>
                     </div>
 
                     <div class="item">
-                        <p style="text-align: center">If not, perhaps this will</p>
+                        <p>Made you feel something?</p>
+                    </div>
+
+                    <div class="item">
+                        <p>If not, perhaps this will</p>
                     </div>
 
                     <div class="item">
                         <svg id='target_intro' class='img-responsive' viewBox="0 0 1500 700"></svg>
+                        <p>This is a target. Play around with it</p>
                     </div>
 
                     <div class="item">
-                        <p style="text-align: center">Let's practice your aim</p>
+                        <p>Let's practice your aim</p>
                     </div>
 
                     <div class="item">
                         <svg id='target' class='img-responsive' viewBox="0 0 1500 700"></svg>
                     </div>
+
+                    <div class="item">
+                        <p>Nicely done!</p>
+                    </div>
+
+                    <div class="item">
+                        <svg id='moving_target' class='img-responsive' viewBox="0 0 1500 700"></svg>
+                    </div>
+
+                   
 
                 </div>
 
@@ -89,9 +104,7 @@
         </div>
     </div>
 
-    <script src="ProfessionalWebsite.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script src="https://raw.githubusercontent.com/adobe-webplatform/Snap.svg/master/dist/snap.svg-min.js" integrity="sha384-IG6MG4rPL+eDfYZHaBp/vk1f2AxzPnzf3entBDT0sAIf2GawbqZCILr+1ypL2zyh" crossorigin="anonymous"></script>
     <script src="snap.svg-min.js"></script>
     <script>
 
@@ -99,9 +112,9 @@
         var snap = Snap("#target_intro")
 
         // Creates the four circles that make up the target
-        var circle1 = snap.circle(600, 350, 300);
-        var circle2 = snap.circle(600, 350, 200);
-        var circle3 = snap.circle(600, 350, 100);
+        var circle1 = snap.circle(600, 350, 190);
+        var circle2 = snap.circle(600, 350, 140);
+        var circle3 = snap.circle(600, 350, 80);
         var circle4 = snap.circle(600, 350, 20);
 
         // Sets the attribute for all circles required
@@ -111,40 +124,98 @@
 
         // Groups all circles together, so that these functions can be
         // used on any part of the target
-        var group = snap.g(circle1, circle2, circle3, circle4)
-        group.drag(onDrag, onBegin);
-        group.hover(hoverOver, hoverOut);
-        group.mouseup(mouseUp);
-        group.mousedown(mouseDown);
-        group.touchstart(mobileTouch);
+        var startingTargetGroup = snap.g(circle1, circle2, circle3, circle4)
+        startingTargetGroup.drag(onDrag, onBegin);
+        startingTargetGroup.hover(hoverOver, hoverOut);
+        startingTargetGroup.mouseup(mouseUp);
+        startingTargetGroup.mousedown(mouseDown);
+        startingTargetGroup.touchstart(mobileTouch);
 
 
+        // The shooting range target
         var targetSnap = Snap("#target");
-        var targetCircle1 = targetSnap.circle(600, 350, 150);
-        var targetCircle2 = targetSnap.circle(600, 350, 100);
-        var targetCircle3 = targetSnap.circle(600, 350, 50);
-        var targetCircle4 = targetSnap.circle(600, 350, 20);
+        var shootingRangeCircle1 = targetSnap.circle(600, 350, 150);
+        var shootingRangeCircle2 = targetSnap.circle(600, 350, 100);
+        var shootingRangeCircle3 = targetSnap.circle(600, 350, 50);
+        var shootingRangeCircle4 = targetSnap.circle(600, 350, 20);
 
-        setCircle1(targetCircle1);
-        setCircle2(targetCircle2);
-        setCircle3(targetCircle3);
+        // Sets the attributes for all of the necessary circles
+        setCircle1(shootingRangeCircle1);
+        setCircle2(shootingRangeCircle2);
+        setCircle3(shootingRangeCircle3);
+
+        // Groups all circles together
+        var shootingRangeGroup = targetSnap.g(shootingRangeCircle1, shootingRangeCircle2, shootingRangeCircle3, shootingRangeCircle4);
+        shootingRangeGroup.mousedown(shootingRange);
+        shootingRangeGroup.hover(hoverOver, hoverOut);
 
 
-        var newgroup = targetSnap.g(targetCircle1, targetCircle2, targetCircle3, targetCircle4)
-        newgroup.mousedown(shootingRange)
+        // The circles used for the moving target
+        var movingTargetSnap = Snap("#moving_target");
+        var movingTarget1 = movingTargetSnap.circle(600, 350, 150);
+        var movingTarget2 = movingTargetSnap.circle(600, 350, 100);
+        var movingTarget3 = movingTargetSnap.circle(600, 350, 50);
+        var movingTarget4 = movingTargetSnap.circle(600, 350, 20);
 
-        //newgroup.transform('t' + 100 + ',' + 100)
-        //newgroup.transform("t" + [1000, 1000] + this.data('ot'))
+        setCircle1(movingTarget1);
+        setCircle2(movingTarget2);
+        setCircle3(movingTarget3);
 
 
+        var movingGroup = movingTargetSnap.g(movingTarget1, movingTarget2, movingTarget3, movingTarget4);
+
+        let value = 0;
+        var timerId = setInterval(animateTarget, 30);
+        var boolean = true;
+
+
+        function animateTarget()
+        {
+            if (value < 500 && boolean)
+            {
+                for (var i = value; i < value + 10; i++)
+                {
+                    movingGroup.transform('t' + i + ',' + (0));
+                }
+            }
+            else
+            {
+                if (value > -200 && !boolean)
+                {
+                    for (var i = value; i > value - 10; i--)
+                    {
+                        movingGroup.transform('t' + i + ',' + (0));
+                    }
+                }
+
+            }
+            value = i;
+            if (value == -200)
+            {
+                boolean = true;
+            }
+            else if (value == 500)
+            {
+                boolean = false;
+            }
+        }
+
+
+
+        /**
+         * Gets a random integer between the min and max
+         */
         function getRandInteger(min, max)
         {
             return Math.floor(Math.random() * (max - min + 1) ) + min;
         }
 
+        /**
+         * Moves the target around 
+         */
         function shootingRange()
         {
-            newgroup.transform('t' + (getRandInteger(-600, 600)) + ',' + (getRandInteger(-300, 300)));
+            shootingRangeGroup.transform('t' + (getRandInteger(-600, 600)) + ',' + (getRandInteger(-300, 300)));
         }
 
         /**
@@ -285,6 +356,19 @@
                 stroke: "black"
             })
         }
+
+        function embedQuote(quote, author)
+        {
+            var wholeness = quote + "    - " + author;
+            document.getElementById('quote').innerHTML = wholeness;
+        }
+
+        function fetchQuotes()
+        {
+            fetch("https://api.quotable.io/random").then((response) => response.json()).then((quote) => embedQuote(quote.content, quote.author));
+        }
+
+        fetchQuotes()
 
         //bigCircle.animate({x: 10}, 1000);
         // Now lets create another small circle:
