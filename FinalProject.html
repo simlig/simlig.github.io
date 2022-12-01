@@ -157,9 +157,33 @@
         var circle4 = snap.circle(600, 350, 20);
 
         // Sets the attribute for all circles required
-        setCircle1(circle1)
-        setCircle2(circle2)
-        setCircle3(circle3)
+        setCircle1(circle1);
+        setCircle2(circle2);
+        setCircle3(circle3);
+        setCircle4(circle4);
+
+
+        circle1.mousedown(() => { circleClicked(circle1.attr("fill")); });
+        circle2.mousedown(() => { circleClicked(circle2.attr("fill")); });
+        circle3.mousedown(() => { circleClicked(circle3.attr("fill")); });
+        circle4.mousedown(() => { circleClicked(circle4.attr("fill")); });
+
+
+        function circleClicked(color)
+        {
+            circle1.attr({
+                fill: color,
+            });
+            circle2.attr({
+                fill: color,
+            });
+            circle3.attr({
+                fill: color,
+            });
+            circle4.attr({
+                fill: color,
+            })
+        }
 
         // Groups all circles together, so that these functions can be
         // used on any part of the target
@@ -167,7 +191,7 @@
         startingTargetGroup.drag(onDrag, onBegin);
         startingTargetGroup.hover(hoverOver, hoverOut);
         startingTargetGroup.mouseup(mouseUp);
-        startingTargetGroup.mousedown(mouseDown);
+        //startingTargetGroup.mousedown(() => { circleClicked("red"); });
         startingTargetGroup.touchstart(mobileTouch);
 
 
@@ -284,7 +308,7 @@
             // Each circle's basic attributes
             providedCircle.attr({
                 fill: "blue",
-                stroke: "white",
+                stroke: "black",
                 strokeWidth: 10
             });
         }
@@ -308,6 +332,18 @@
         {
             providedCircle.attr({
                 fill: "red",
+                stroke: "black",
+                strokeWidth: 10
+            });
+        }
+
+        /**
+         * Creates the colors for the target on the innermost circle
+         */
+         function setCircle4(providedCircle)
+        {
+            providedCircle.attr({
+                fill: "forestgreen",
                 stroke: "black",
                 strokeWidth: 10
             });
@@ -373,26 +409,7 @@
             document.body.style.cursor = "default";
         }
 
-        /**
-         * Dynamic options to svg when user clicks
-         */
-        function mouseDown()
-        {
-            circle1.attr({
-                fill: "red",
-                stroke: "red"
-            });
 
-            circle2.attr({
-                fill: "red",
-                stroke: "red"
-            })
-
-            circle3.attr({
-                fill: "red",
-                stroke: "red"
-            })
-        }
 
         /**
          * Dynamic option for svg when user releases click
@@ -401,7 +418,7 @@
         {
             circle1.attr({
                 fill: "blue",
-                stroke: "white"
+                stroke: "black"
             });
             
             circle2.attr({
@@ -413,14 +430,24 @@
                 fill: "red",
                 stroke: "black"
             })
+            circle4.attr({
+                fill: "forestgreen",
+                stroke: "black"
+            })
         }
 
+        /**
+         * Places the quote from the API into the <p> with id "quote"
+         */
         function embedQuote(quote, author)
         {
             let quote_and_credit = quote + "    - " + author;
             document.getElementById('quote').innerHTML = quote_and_credit;
         }
 
+        /**
+         * Gets a random quote from "https://api.quotable.io/random"
+         */
         function fetchQuotes()
         {
             fetch("https://api.quotable.io/random").then((
