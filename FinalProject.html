@@ -38,12 +38,8 @@
                     </div>
 
                     <div class="item">
-                        <p>
-                            Since I love all things classical
-                            <br>
-                            and technlogical, I figured I'd
-                            <br>
-                            incorporate both
+                        <p style="font-size: 90%">
+                            Let me expand your classical mind
                         </p>
                     </div>
 
@@ -53,8 +49,11 @@
                         </p>
                     </div>
 
-                    <div class="item" id="quote">
-                        <p>
+                    <div class="item">
+                        <p id="quote">
+
+                        </p>
+                        <p id="author">
 
                         </p>
                     </div>
@@ -78,15 +77,15 @@
                     </div>
 
                     <div class="item">
-                        <p>
-                            If not, perhaps this will
+                        <p style="font-size: 80%">
+                            If not, perhaps you need something more technological
                         </p>
                     </div>
 
                     <div class="item">
                         <svg class='img-responsive' id='target_intro' viewBox="0 0 1500 700"></svg>
                         <p>
-                            This is a target. Play around with it
+                            Examine this target
                         </p>
                     </div>
 
@@ -97,18 +96,13 @@
                     </div>
 
                     <div class="item">
-                        <svg class='img-responsive' id='target' viewBox="0 0 1500 700"></svg>
-                    </div>
+                        <svg class='img-responsive' id='moving_target' viewBox="0 0 1500 700"></svg>
+                        <p id="moving_target_text">
 
-                    <div class="item">
-                        <p>
-                            Nicely done!
                         </p>
                     </div>
 
-                    <div class="item">
-                        <svg class='img-responsive' id='moving_target' viewBox="0 0 1500 700"></svg>
-                    </div>
+
 
                     <div class="item">
                         <p>
@@ -116,7 +110,42 @@
                         </p>
                     </div>
 
+                    <div class="item">
+                        <p style="font-size: 90%">
+                            This next one is gonna take some skill
+                        </p>
+                    </div>
 
+                    <div class="item">
+                        <svg class='img-responsive' id='target' viewBox="0 0 1500 700"></svg>
+                    </div>
+
+                    <div class="item">
+                        <p>
+                            <button class="btn btn-primary btn-lg" id="resultbutton" onclick="displayResults()">Display Results</button>
+                            <p id="results">
+
+                                <!--<table style="width:50%">
+                                    <tr>
+                                        <th id="th1"><strong></strong></th>
+                                        <th id="th2"><strong></strong></th>
+                                        <th id="th3"><strong></strong></th>
+                                        <th id="th4"><strong></strong></th>
+                                        <th id="th5"><strong></strong></th>
+                                    </tr>
+                                    <tr>
+                                        <td id="td1"></td>
+                                        <td id="td2"></td>
+                                        <td id="td3"></td>
+                                        <td id="td4"></td>
+                                        <td id="td5"></td>
+                                    </tr>
+                                </table>--->
+                            </p>
+                        </p>
+                        
+                            
+                    </div>
                    
 
                 </div>
@@ -145,113 +174,129 @@
 
     <script>
 
-        /**
-         * The first target encountered
-         */
-        var snap = Snap("#target_intro")
+        // Creates counters to track user accuracy
+        var targetGreenCounter = 0;
+        var targetRedCounter = 0;
+        var targetWhiteCounter = 0;
+        var targetBlueCounter = 0;
 
-        // Creates the four circles that make up the target
-        var circle1 = snap.circle(600, 350, 190);
-        var circle2 = snap.circle(600, 350, 140);
-        var circle3 = snap.circle(600, 350, 80);
-        var circle4 = snap.circle(600, 350, 20);
-
-        // Sets the attribute for all circles required
-        setCircle1(circle1);
-        setCircle2(circle2);
-        setCircle3(circle3);
-        setCircle4(circle4);
-
-
-        circle1.mousedown(() => { circleClicked(circle1.attr("fill")); });
-        circle2.mousedown(() => { circleClicked(circle2.attr("fill")); });
-        circle3.mousedown(() => { circleClicked(circle3.attr("fill")); });
-        circle4.mousedown(() => { circleClicked(circle4.attr("fill")); });
-
-
-        function circleClicked(color)
+        function main()
         {
-            circle1.attr({
-                fill: color,
-            });
-            circle2.attr({
-                fill: color,
-            });
-            circle3.attr({
-                fill: color,
-            });
-            circle4.attr({
-                fill: color,
-            })
+            fetchQuotes();
+            targetIntro();
+            targetShootingRange();
+            slowMovingTarget();
+
+            // Always keep refreshing results
+            // Put it at 1.5 seconds and realistically, could be longer
+            // to improve performance
+            let timerId = setInterval(displayResults, 1500);
         }
 
-        // Groups all circles together, so that these functions can be
-        // used on any part of the target
-        var startingTargetGroup = snap.g(circle1, circle2, circle3, circle4)
-        startingTargetGroup.drag(onDrag, onBegin);
-        startingTargetGroup.hover(hoverOver, hoverOut);
-        startingTargetGroup.mouseup(mouseUp);
-        //startingTargetGroup.mousedown(() => { circleClicked("red"); });
-        startingTargetGroup.touchstart(mobileTouch);
+        /**
+         * The starting target
+         */
+        function targetIntro()
+        {
+            let snap = Snap("#target_intro")
+
+            // Creates the four circles that make up the target
+            let circle1 = snap.circle(600, 350, 190);
+            let circle2 = snap.circle(600, 350, 140);
+            let circle3 = snap.circle(600, 350, 80);
+            let circle4 = snap.circle(600, 350, 20);
+
+            // Sets the attribute for all circles required
+            setCircles(circle1, circle2, circle3, circle4);
+
+            // Creates the functionality for everything to change colors, based
+            // on which sub circle was clicked. Helps the user see their accuracy
+            circle1.mousedown(() => { circleClicked(circle1, circle2, circle3, circle4, circle1.attr("fill"), ""); });
+            circle2.mousedown(() => { circleClicked(circle1, circle2, circle3, circle4, circle2.attr("fill"), ""); });
+            circle3.mousedown(() => { circleClicked(circle1, circle2, circle3, circle4, circle3.attr("fill"), ""); });
+            circle4.mousedown(() => { circleClicked(circle1, circle2, circle3, circle4, circle4.attr("fill"), ""); });
+
+            // Groups all circles together, so that these functions can be
+            // used on any part of the target
+            let startingTargetGroup = snap.g(circle1, circle2, circle3, circle4)
+            startingTargetGroup.drag(onDrag, onBegin);
+            startingTargetGroup.hover(hoverOver, hoverOut);
+            startingTargetGroup.mouseup(() => { mouseUp(circle1, circle2, circle3, circle4); });
+            startingTargetGroup.touchstart(mobileTouch);
+        }
 
 
         /**
          * The shooting range target
          */
-        var targetSnap = Snap("#target");
-        var shootingRangeCircle1 = targetSnap.circle(600, 350, 150);
-        var shootingRangeCircle2 = targetSnap.circle(600, 350, 100);
-        var shootingRangeCircle3 = targetSnap.circle(600, 350, 50);
-        var shootingRangeCircle4 = targetSnap.circle(600, 350, 20);
+        function targetShootingRange()
+        {
+            let targetSnap = Snap("#target");
 
-        // Sets the attributes for all of the necessary circles
-        setCircle1(shootingRangeCircle1);
-        setCircle2(shootingRangeCircle2);
-        setCircle3(shootingRangeCircle3);
+            // Creates 4 circles in the svg segment with id target
+            let circle1 = targetSnap.circle(600, 350, 150);
+            let circle2 = targetSnap.circle(600, 350, 100);
+            let circle3 = targetSnap.circle(600, 350, 50);
+            let circle4 = targetSnap.circle(600, 350, 20);
 
-        // Groups all circles together
-        var shootingRangeGroup = targetSnap.g(shootingRangeCircle1, shootingRangeCircle2, shootingRangeCircle3, shootingRangeCircle4);
-        shootingRangeGroup.mousedown(shootingRange);
-        shootingRangeGroup.hover(hoverOver, hoverOut);
+            // Sets the attributes for all of the necessary circles
+            setCircles(circle1, circle2, circle3, circle4);
 
+            // Groups all circles together
+            let shootingRangeGroup = targetSnap.g(circle1, circle2, circle3, circle4);
+
+
+            // Changes the color of the target based on user accuracy
+            circle1.mousedown(() => { circleClicked(circle1, circle2, circle3, circle4, circle1.attr("fill"), "blue"); });
+            circle2.mousedown(() => { circleClicked(circle1, circle2, circle3, circle4, circle2.attr("fill"), "white"); });
+            circle3.mousedown(() => { circleClicked(circle1, circle2, circle3, circle4, circle3.attr("fill"), "red"); });
+            circle4.mousedown(() => { circleClicked(circle1, circle2, circle3, circle4, circle4.attr("fill"), "green"); });
+
+            // Moves the target when its clicked to a random location
+            shootingRangeGroup.mouseup(() => { shootingRange(shootingRangeGroup, circle1, circle2, circle3, circle4); });
+            shootingRangeGroup.hover(hoverOver, hoverOut);
+        }    
 
         /**
          * The slow moving target 
          */
-        var movingTargetSnap = Snap("#moving_target");
-        var movingTarget1 = movingTargetSnap.circle(600, 350, 150);
-        var movingTarget2 = movingTargetSnap.circle(600, 350, 100);
-        var movingTarget3 = movingTargetSnap.circle(600, 350, 50);
-        var movingTarget4 = movingTargetSnap.circle(600, 350, 20);
-
-        setCircle1(movingTarget1);
-        setCircle2(movingTarget2);
-        setCircle3(movingTarget3);
-
-
-        var movingGroup = movingTargetSnap.g(movingTarget1, movingTarget2, movingTarget3, movingTarget4);
-        movingGroup.hover(hoverOver, hoverOut);
-
-        let value = 0;
-        var timerId = setInterval(animateTarget, 20);
-        var boolean = true;
-        var clicked = false;
-
-        movingGroup.mousedown(clear);
-
-        /**
-         * Stops the animation 
-         */
-        function clear()
+        function slowMovingTarget()
         {
-            clearInterval(timerId);
-            clicked = true;
+            let movingTargetSnap = Snap("#moving_target");
+
+            // Creates 4 circles in the svg segment with id target
+            let circle1 = movingTargetSnap.circle(600, 350, 150);
+            let circle2 = movingTargetSnap.circle(600, 350, 100);
+            let circle3 = movingTargetSnap.circle(600, 350, 50);
+            let circle4 = movingTargetSnap.circle(600, 350, 20);
+
+            // Sets the attributes for all of the necessary circles
+            setCircles(circle1, circle2, circle3, circle4);
+
+            // Changes the color of the target based on user accuracy
+            circle1.mousedown(() => { circleClicked(circle1, circle2, circle3, circle4, circle1.attr("fill"), ""); });
+            circle2.mousedown(() => { circleClicked(circle1, circle2, circle3, circle4, circle2.attr("fill"), ""); });
+            circle3.mousedown(() => { circleClicked(circle1, circle2, circle3, circle4, circle3.attr("fill"), ""); });
+            circle4.mousedown(() => { circleClicked(circle1, circle2, circle3, circle4, circle4.attr("fill"), ""); });
+
+            // Groups all circles together
+            let movingGroup = movingTargetSnap.g(circle1, circle2, circle3, circle4);
+
+            movingGroup.mouseup(() => { mouseUp(circle1, circle2, circle3, circle4); });
+            movingGroup.hover(hoverOver, hoverOut);
+
+            let timerId = setInterval(() => { animateTarget(movingGroup); }, 20);
+
+            movingGroup.mousedown(() => { clear(timerId); });
         }
+
+        var value = 0;
+        var boolean = true;
 
         /**
          * Creates an animation for the target 
          */
-        function animateTarget()
+        function animateTarget(movingGroup)
         {
             if (value < 500 && boolean)
             {
@@ -284,6 +329,82 @@
             }
         }
 
+        function resetResults()
+        {
+            targetGreenCounter = 0;
+            targetRedCounter = 0;
+            targetWhiteCounter = 0;
+            targetBlueCounter = 0;
+
+            document.getElementById("resultbutton").textContent = "Calculate score";
+            
+            document.getElementById("resultbutton").setAttribute('onclick','displayResults()')
+        }
+
+        function displayResults()
+        {
+            document.getElementById("results").innerHTML = "# of Hits: " +
+                (targetRedCounter + targetWhiteCounter + targetGreenCounter + targetBlueCounter) + "<br>" + 
+                "# of Green Hit: " + targetGreenCounter + "<br>" + "# of Red Hit: " +
+                targetRedCounter + "<br>" + "# of Whites: " + targetWhiteCounter + "<br>" +
+                "# of Blue Hit: " + targetBlueCounter;
+
+            document.getElementById("resultbutton").textContent = "Reset score";
+            document.getElementById("resultbutton").setAttribute('onclick','resetResults()')
+
+            //document.getElementById("th1").innerHTML = "Total number of hits";
+            //document.getElementById("th2").innerHTML = "Number of Perfects";
+            //document.getElementById("th3").innerHTML = "Number of Greats";
+            //document.getElementById("th4").innerHTML = "Number of Goods";
+            //document.getElementById("th5").innerHTML = "Number of Near Misses";
+
+        }
+
+        function circleClicked(givenCircle1, givenCircle2, givenCircle3, givenCircle4, color, accuracy)
+        {
+            givenCircle1.attr({
+                fill: color,
+            });
+            givenCircle2.attr({
+                fill: color,
+            });
+            givenCircle3.attr({
+                fill: color,
+            });
+            givenCircle4.attr({
+                fill: color,
+            })
+
+            if (accuracy == "blue")
+            {
+                targetBlueCounter += 1;
+            }
+
+            else if (accuracy == "white")
+            {
+                targetWhiteCounter += 1;
+            }
+
+            else if (accuracy == "red")
+            {
+                targetRedCounter += 1;
+            }
+
+            else if (accuracy == "green")
+            {
+                targetGreenCounter += 1;
+            }
+        }
+
+
+        /**
+         * Stops the animation 
+         */
+        function clear(timerId)
+        {
+            clearInterval(timerId);
+        }
+
         /**
          * Gets a random integer between the min and max
          */
@@ -295,9 +416,15 @@
         /**
          * Moves the target around 
          */
-        function shootingRange()
+        function shootingRange(shootingRangeGroup, providedCircle1, providedCircle2, providedCircle3, providedCircle4)
         {
+            mouseUp(providedCircle1, providedCircle2, providedCircle3, providedCircle4);
             shootingRangeGroup.transform('t' + (getRandInteger(-400, 600)) + ',' + (getRandInteger(-100, 250)));
+
+            console.log(targetGreenCounter);
+            console.log(targetRedCounter);
+            console.log(targetWhiteCounter);
+            console.log(targetBlueCounter);
         }
 
         /**
@@ -347,6 +474,17 @@
                 stroke: "black",
                 strokeWidth: 10
             });
+        }
+
+        /**
+         * Sets all circles
+         */
+        function setCircles(providedCircle1, providedCircle2, providedCircle3, providedCircle4)
+        {
+            setCircle1(providedCircle1);
+            setCircle2(providedCircle2);
+            setCircle3(providedCircle3);
+            setCircle4(providedCircle4);
         }
 
         // Functions for SVG Manipulation
@@ -414,26 +552,33 @@
         /**
          * Dynamic option for svg when user releases click
          */
-        function mouseUp()
+        function mouseUp(providedCircle1, providedCircle2, providedCircle3, providedCircle4)
         {
-            circle1.attr({
+            providedCircle1.attr({
                 fill: "blue",
                 stroke: "black"
             });
             
-            circle2.attr({
+            providedCircle2.attr({
                 fill: "white",
                 stroke: "black"
             })
 
-            circle3.attr({
+            providedCircle3.attr({
                 fill: "red",
                 stroke: "black"
             })
-            circle4.attr({
+            providedCircle4.attr({
                 fill: "forestgreen",
                 stroke: "black"
             })
+
+            changeMovingText()
+        }
+
+        function changeMovingText()
+        {
+            document.getElementById("moving_target_text").innerHTML = "Nicely done! Feel anything yet?";
         }
 
         /**
@@ -441,8 +586,8 @@
          */
         function embedQuote(quote, author)
         {
-            let quote_and_credit = quote + "    - " + author;
-            document.getElementById('quote').innerHTML = quote_and_credit;
+            document.getElementById('quote').innerHTML = quote
+            document.getElementById('author').innerHTML = "- " + author;
         }
 
         /**
@@ -455,7 +600,7 @@
                 quote) => embedQuote(quote.content, quote.author));
         }
 
-        fetchQuotes()
+        main();
 
     </script>
 </body>
