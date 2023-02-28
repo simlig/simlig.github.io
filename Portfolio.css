@@ -1,96 +1,44 @@
 body {
     background-color: rgb(27, 27, 27);
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.jumbotron {
+    background-color: rgb(27, 27, 27);
 }
 
 h1 {
     color: white;
-    text-align: center;
+    text-align: left;
+    font-family:'Times New Roman', Times, serif;
 }
 
 h2 {
     color: white;
-    text-align: center;
+    text-align: left;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
 h3 {
     color: white;
-    text-align: center;
+    text-align: left;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
 h4 {
     color: white;
-    text-align: center;
+    text-align: left;
+
 }
 
 p {
-    color: rgb(227, 243, 135);
-    padding-left: 5%;
-    padding-right: 5%;
+    color: rgb(180, 211, 177);
+    font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
 div {
     color: white;
-}
-
-.carousel-indicators {
-    display: flex;
-    justify-content: bottom;
-    align-items: bottom;
-    height: -100px;
-}
-
-.carousel-control-prev {
-    left: 20%;
-}
-
-#quote {
-    text-align: left;
-    margin-left: 13%;
-    margin-right: 8%;
-    font-size: 60%;
-}
-
-#author {
-    text-align: right;
-    margin-left: 13%;
-    margin-right: 8%;
-    font-size: 60%;
-
-}
-
-#center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 650px;
-}
-
-#target-intro{
-    margin-top: 20px;
-    margin-left: 150px;
-    background-color: black;
-    position: relative; 
-    display: block;
-}
-
-#target{
-    margin-top: 20px;
-    margin-left: 150px;
-    background-color: black;
-    position: relative; 
-    display: block;
-}
-
-#moving-target {
-    margin-top: 20px;
-    margin-left: 150px;
-    background-color: black;
-    position: relative; 
-    display: block;
-}
-
-#results {
-    text-align: left;
-    color: white;
-    padding-left: 35%;
 }
