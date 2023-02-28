@@ -1,49 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<title>Portfolio</title>
 
-<style>
-    h1 {
-        color: rgb(255, 255, 255);
-        text-align: center;
-    }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="Portfolio.css">
 
-    h2 {
-        color: rgb(255, 255, 255);
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    body {
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        background-image: url("https://images.pexels.com/photos/2680270/pexels-photo-2680270.jpeg?auto=compress&cs=tinysrgb&w=600");
-    }
-    
-</style>
-
-<title>"Samuel Imlig's Landing Page"</title>
 <body>
-    <h1>Samuel Imlig's Landing Page</h1>
-    <h2>Project 1: Music</h2>
-    <ul>
-        <li><h2><a href="MovieMusic.html">Movie Music</a></h2></li>
-        <li><h2><a href="VideoGameMusic.html">Video-Game Music</a></h2></li>
-        <li><h2><a href="Reasoning.html">My Song Reasoning</a></h2></li>
-    </ul>
-    <h2>Project 2: Zen Garden</h2>
-    <ul>
-        <li><h2><a href="zengardens.html">Zen Garden</a></h2></li>
-    </ul>
-    <h2>Project 3: Dynamic Webpage</h2>
-    <ul>
-        <li><h2><a href="JavaScriptProject.html">The Story</a></h2></h></li>
-    </ul>
-    <h2>Final Project</h2>
-    <ul>
-        <li><h2><a href="FinalProject.html">Final Project</a></h2></li>
-    </ul>
+    <div class="container-fluid pt-5">
+        <h1>
+            Hello! My name is Samuel Imlig
+        </h1>
 
+        <h3>
+            REAL WORLD UNIVERSITY EXPERIENCE
+        </h3>
+
+        <h4>
+            Senior Design - VineTech
+        </h4>
+
+        <p>
+            My team of 4 other Computer Scientists took over a project designed to predict the yield of grapes
+            months before harvest from a specific section of The Crawford Beck Vineyard. Previous teams and faculty
+            had successfully achieved accurate predictions through the use of an autonomous rover and computer vision,
+            but there were several issues that still had to be addressed. First, we were responsible for correcting
+            the inaccurate bay assignments littered throughout the database by utilizing an HMM model paired with a
+            Computer Vision algorithm written by a professor that correctly identified when a post was within a photo.
+            This significantly increased the accuracy of the yield prediction. Our second resonsibility was to implement
+            cruise control for the autonomous rover. To accomplish this goal, we needed to fix the motor encoders, as they
+            possessed largely inconsistent values. Once this was achieved, we deciphered the value of the encoder after
+            one full rotation and scaled that value to reach our desired speed. Finally, we were responsible for
+            implementing autonomous turning for the rover, as the previous team had created the ability for it to driver
+            within the vineyard rows, but upon reaching the end, it would simply cease moving. 
+        </p>
+
+        <h4>
+            SERVANT ENGINEERING - LESVOS
+        </h4>
+
+        <p>
+            Hoping to assist with the refugee crisis on the beautiful Mediteranean island of Lesvos,
+            my inter-discipline team brainstormed ways that we could bring sustainable income to the island.
+            After months of researching a variety of factors, such as likelihood of cultural acceptance, cost
+            and environmental impact, we discovered the blue-green algae Spirulina. Spirulina is a resource 
+            deeply ingrained within the culture and a procurer of countless health benefits. 
+            I was responsible for deciphering the logistics of the farming process, such as the growing conditions,
+            cultivation, production, harvesting and cost, as well as for the post-processing methodology
+            for a mid-sized facility. The project culminated in several members of our team traveling to Lesvos and 
+            displaying our work to interested Lesvos residents. The presentation was a resounding success, as the project
+            was given authorization to proceed with the designing and constructing of a Spirulina facility on the island.
+            A copy of the PDF presentation can be found at this <a href="Lesvos Spirulina.pdf" target="_blank">link</a>.
+        </p>
+
+        <h3>
+            WORK EXPERIENCE
+        </h3>
+
+        <h4>
+            Colombus Systems - Software Developement Intern
+        </h4>
+
+        <p>
+            I developed a mobile application for iOS and Android titled 1075 Mobile, through the use of the Delphi
+            programming language. This application enables propane drivers to view customer, tank, and appliance information
+            by using the REST paradigm to interact with a Paradox database. Additionally, it allows for transactions,
+            safety checks and GPS routing to be performed in the field. This experience helped me develop my skills as a
+            front-end developer and granted me increased familiarity with the steps required to successfully launch
+            a mobile application on the Amazon and Apple App Stores. 
+        </p>
+
+        <h4>
+            George Fox University - Lab Assistant
+        </h4>
+
+        <p>
+            I assist and encourage students to reach their academic goals by teaching them core Computer Science concepts
+            and empathizing with them when they fall short of those goals. Key concepts conveyed are data structures,
+            analysis of algorithms, parallel programming paradigms, relational databases, front-end design, and programming
+            style best practices. 
+        </p>
+
+        <h3>
+            UNIVERSITY PROJECTS
+        </h3>
+
+        <h4>
+            TypeScript Research Paper - Structures of Programming Languages: Fall 2023
+        </h4>
+
+        <p>
+            Tasked with exploring the history, syntactic and semantic structure of a programming language, I chose
+            the language TypeScript. This language was developed by Microsoft as has seen significant use and support
+            since its inception, primarily because of its sustainability and sustainability compared to vanilla
+            JavaScript. The full report can be accessed via this <a href="CSIS420 - Research Paper.pdf" target="_blank">
+            link</a>.
+        </p>
+
+        <h4>
+            Pandemic2020 - Software Engineering: Spring 2020
+        </h4>
+
+        <p>
+            Seeking a high level solution to the global pandemic, my team and I developed the idea for a mobile application
+            dubbed Pandemic 2020. Pandemic 2020's purpose would be to reduce the spread of COVID-19 by developing an
+            early warning system through the use of contact tracing, daily checkups and regulation notifications.
+            In this document, we discuss the intended audience, use, risks and dependencies required for this application
+            to exist, as well as provide the basic UI elements. The culmination of the project was a presentation before
+            a mock board of directors comprised mainly of university faculty. The final PDF can be found at this
+            <a href="Pandemic2020.pdf" target="_blank">link</a>.
+        </p>
+
+
+
+
+    </div>
 </body>
 
+
+<!-- Bootstrap -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</body>
 </html>
