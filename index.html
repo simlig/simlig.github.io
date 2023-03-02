@@ -25,7 +25,7 @@
             </div>
 
             <h2>
-                REAL WORLD UNIVERSITY EXPERIENCE
+                REAL WORLD EXPERIENCE
             </h2>
 
             <hr>
@@ -41,12 +41,16 @@
                 but there were several issues that still had to be addressed. First, we were responsible for correcting
                 the inaccurate bay assignments littered throughout the database by utilizing an HMM model paired with a
                 Computer Vision algorithm written by a professor that correctly identified when a post was within a photo.
-                This significantly increased the accuracy of the yield prediction. Our second responsibility was to implement
-                cruise control for the autonomous rover. To accomplish this goal, we needed to fix the motor encoders, as they
-                possessed largely inconsistent values. Once this was achieved, we deciphered the value of the encoder after
-                one full rotation and scaled that value to reach our desired speed. Finally, we were responsible for
-                implementing autonomous turning for the rover, as the previous team had created the ability for it to driver
-                within the vineyard rows, but upon reaching the end, it would simply cease moving. 
+                This fixed several terabytes of image data and significantly increased the accuracy of the yield prediction.
+                Our second responsibility was to implement cruise control for the autonomous rover. To accomplish this goal,
+                we needed to fix the motor encoders, as they possessed largely inconsistent values. Once this was achieved,
+                we deciphered the value of the encoder after one second and used this value as our goal.
+                Every millsecond, the ROS (Robot Operating System) checked the current encoder value and modified its speed
+                to match the value. Finally, we were responsible for implementing autonomous turning for the rover, as the
+                previous team had created the ability for it to drive within the vineyard rows, but upon reaching the end,
+                it would simply cease moving. We incorported the rover's GPS to capture the most recent longitude and latitude
+                values to determine the direction of the turn and then utilized LIDAR to determine how to turn around specific
+                objects.                
             </p>
 
 
@@ -69,31 +73,6 @@
             </div>
 
             <br>
-
-            <h4>
-                Servant Engineering - Lesvos: 2021-2022
-            </h4>
-
-            <p>
-                Hoping to assist with the refugee crisis on the beautiful Mediterranean island of Lesvos,
-                my inter-discipline team brainstormed ways that we could bring sustainable income to the island.
-                After months of researching a variety of factors, such as likelihood of cultural acceptance, cost,
-                and environmental impact, we discovered the blue-green algae Spirulina. Spirulina is a resource 
-                deeply ingrained within the culture and a procurer of countless health benefits. 
-                I was responsible for deciphering the logistics of the farming process, such as the growing conditions,
-                cultivation, production, harvesting and cost, as well as for the post-processing methodology
-                for a mid-sized facility. The project culminated in several members of our team traveling to Lesvos and 
-                displaying our work to interested Lesvos residents. The presentation was a resounding success, as the project
-                was given authorization to proceed with the designing and constructing of a Spirulina facility on the island.
-                A copy of the PDF presentation can be found at this <a href="Lesvos Spirulina.pdf" target="_blank">link</a>.
-            </p>
-
-            <br>
-
-
-            <h2>
-                WORK EXPERIENCE
-            </h2>
 
             <hr>
 
@@ -122,6 +101,26 @@
                 and empathizing with them when they fall short of those goals. Key concepts conveyed are data structures,
                 analysis of algorithms, parallel programming paradigms, relational databases, front-end design, and programming
                 style best practices. 
+            </p>
+
+            <br>
+
+            <h4>
+                Servant Engineering - Lesvos: 2021-2022
+            </h4>
+
+            <p>
+                Hoping to assist with the refugee crisis on the beautiful Mediterranean island of Lesvos,
+                my inter-discipline team brainstormed ways that we could bring sustainable income to the island.
+                After months of researching a variety of factors, such as likelihood of cultural acceptance, cost,
+                and environmental impact, we discovered the blue-green algae Spirulina. Spirulina is a resource 
+                deeply ingrained within the culture and a procurer of countless health benefits. 
+                I was responsible for deciphering the logistics of the farming process, such as the growing conditions,
+                cultivation, production, harvesting and cost, as well as for the post-processing methodology
+                for a mid-sized facility. The project culminated in several members of our team traveling to Lesvos and 
+                displaying our work to interested Lesvos residents. The presentation was a resounding success, as the project
+                was given authorization to proceed with the designing and constructing of a Spirulina facility on the island.
+                A copy of the PDF presentation can be found at this <a href="Lesvos Spirulina.pdf" target="_blank">link</a>.
             </p>
 
             <br>

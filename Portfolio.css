@@ -32,7 +32,8 @@ h4 {
 
 p {
     color: rgb(147, 202, 142);
-    font-family:Verdana, Geneva, Tahoma, sans-serif
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 11pt;
 }
 
 div {
