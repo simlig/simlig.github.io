@@ -45,12 +45,12 @@
                 Our second responsibility was to implement cruise control for the autonomous rover. To accomplish this goal,
                 we needed to fix the motor encoders, as they possessed largely inconsistent values. Once this was achieved,
                 we deciphered the value of the encoder after one second and used this value as our goal.
-                Every millsecond, the ROS (Robot Operating System) checked the current encoder value and modified its speed
-                to match the value. Finally, we were responsible for implementing autonomous turning for the rover, as the
+                We are currently working to utilize the ROS (Robot Operating System) to compare the current value to the ideal value
+                every millisecond. Finally, we are working on implementing autonomous turning for the rover, as the
                 previous team had created the ability for it to drive within the vineyard rows, but upon reaching the end,
-                it would simply cease moving. We incorported the rover's GPS to capture the most recent longitude and latitude
-                values to determine the direction of the turn and then utilized LIDAR to determine how to turn around specific
-                objects.                
+                it would simply cease moving. We have incorported the rover's GPS to capture the most recent longitude and latitude
+                values to determine the direction of the turn and then plan to utilize LIDAR to determine how to turn around specific
+                objects.    
             </p>
 
 
