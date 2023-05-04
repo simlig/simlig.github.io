@@ -35,50 +35,311 @@
             <hr>
 
             <h3>
-                Senior Capstone - VineTech: 2022-2023
+                Senior Capstone Project - VineTech: 2022-2023
             </h3>
 
             <p>
-                My team of 4 other Computer Scientists took over a project designed to predict the yield of grapes
-                months before harvest from a specific section of <a href="https://www.crawfordbeck.com/">The Crawford Beck Vineyard</a>. Previous teams and faculty
-                had successfully achieved accurate predictions using an autonomous rover and computer vision,
-                but there were several issues that still had to be addressed. First, we were responsible for correcting
-                the inaccurate bay assignments littered throughout the database by utilizing an HMM model paired with a
-                Computer Vision algorithm written by a professor that correctly identified when a post was within a photo.
-                This fixed several terabytes of image data and significantly increased the accuracy of the yield prediction.
-                Our second responsibility was to implement cruise control for the autonomous rover. To accomplish this goal,
-                we needed to fix the motor encoders, as they possessed largely inconsistent values. Once this was achieved,
-                we deciphered the value of the encoder after one second and used this value as our goal.
-                We are currently working to utilize the ROS (Robot Operating System) to compare the current value to the ideal value
-                every millisecond. Finally, we are working on implementing autonomous turning for the rover, as the
-                previous team had created the ability for it to drive within the vineyard rows, but upon reaching the end,
-                it would simply cease moving. We have incorported the rover's GPS to capture the most recent longitude and latitude
-                values to determine the direction of the turn and then plan to utilize LIDAR to determine how to turn around specific
-                objects.    
+                The VineTech project has has existed since 2016 and its goal is to utilize a series of machine learning
+                algorithms to accurately predict the yield of <a href="https://www.crawfordbeck.com/">The Crawford Beck Vineyard</a>
+                several weeks or months before harvest. This is important for vineyard owners, because without an accurate prediction
+                of yield, hundreds of pounds of grapes would be wasted. Last year, Crawford Beck reported their estimate to be 72% accurate,
+                while the VineTech estimate had an estimate of 98% accuracy.
+                
+                <br>
+                <br>
+                
+                    <a href="./VineTech/CrawfordBeck.png" target="_blank">
+                        <img class="img-responsive mx-auto d-block" src="./VineTech/CrawfordBeck.png" alt="Crawford">
+                        <div class="caption">
+                            <p id="captionWhite">Crawford Beck Vineyard</p>
+                        </div>
+                    </a>
+
+                <br>
+
+                <p>
+                    Previous teams were forced to manually take pictures of the vineyard rows using GoPros, but during
+                    the project's development an autonomous rover was created to take the images.
+                </p>
+
+                <br>
+
+
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="./VineTech/Rover_Outside.png" target="_blank">
+                                <img class="img-responsive" src="./VineTech/Rover_Outside.png" alt="RoverOutside">
+                                <div class="caption">
+                                    <p id="caption">The Outside Of The Rover</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="./VineTech/Rover_Front.png" target="_blank">
+                                <img class="img-responsive" src="./VineTech/Rover_Front.png" alt="RoverFront">
+                                <div class="caption">
+                                    <p id="caption">The Front Of The Rover</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="./VineTech/Rover_Inside.png" target="_blank">
+                                <img class="img-responsive" src="./VineTech/Rover_Inside.png" alt="RoverInside">
+                                <div class="caption">
+                                    <p id="caption">Inside of the Rover</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+                <br>
+            </p>
+
+
+            <h3>
+                Goals
+            </h3> 
+            <p>
+                When our team took over the project, we had three major goals
+                to accomplish: fix the inaccurate bay assignments in the database in order to increase our predictions,
+                implement adaptive cruise control so that the rover would maintain a constant speed regardless of topography
+                and implement autonomous turning, so that the rover could navigate itself autonomously through the vineyard, instead
+                of just a singular row. 
+            </p>
+                
+            <h3>
+                Goal 1: Fix the inaccurate bay assignments
+            </h3>
+
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a href="./VineTech/ExampleOfABayMarker.jpg" target="_blank">
+                            <img class="img-responsive" src="./VineTech/ExampleOfABayMarker.jpg" alt="BayMarker">
+                            <div class="caption">
+                                <p id="caption">End of Bay Marker</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a href="./VineTech/SpreadsheetOfWeights.png" target="_blank">
+                            <img class="img-responsive" src="./VineTech/SpreadsheetOfWeights.png" alt="Weights">
+                            <div class="caption" id="caption">
+                                <p id="caption">Spreadsheet of Weights</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a href="./VineTech/ExampleImageOfRow.png" target="_blank">
+                            <img class="img-responsive" src="./VineTech/ExampleImageOfRow.png" alt="ImageOfRow">
+                            <div class="caption" id="caption">
+                                <p id="caption">A Vineyard Row</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+
+                Our specific vineyard was separated into 21 rows, each with 21 bays. Bays are separated from one another by a metal post.
+                The left image is an example of such a metal post from the rover's view. The middle image is an example
+                of our spreadsheet detailing the weights collected during harvest. After each harvest, the spreadsheet
+                is taken and the weights recorded are associated with the images from that specific bay. This allows us to start making
+                predictions based upon previously recorded images and weights. When these images are incorrectly labeled, 
+                it makes the predictions remarkably less accurate. The harvest season is typically in the early fall/late summer timeframe,
+                which means we are taking most of our vineyard images in the summer, during higher temperatures. Unfortunately, the official max operating
+                temperature of our GoPro GPS modules are approximately 95 degrees Fahrenheit, so there are times when we exceed that temperature while taking
+                photos and our GPS meta data becomes inaccurate as a result.
+            </p>
+
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a href="./VineTech/61Degrees.png" target="_blank">
+                            <img class="img-responsive" src="./VineTech/61Degrees.png" alt="61Degrees">
+                            <div class="caption">
+                                <p id="caption">GPS Coordinates at 61 degrees Fahrenheit</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a href="./VineTech/96Degrees.png" target="_blank">
+                            <img class="img-responsive" src="./VineTech/96Degrees.png" alt="96Degrees">
+                            <div class="caption" id="caption">
+                                <p id="caption">GPS Coordinates at 96 degrees Fahrenheit</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                The two images shown here are some example plots from our validation scripts. These images are showing the GPS data recorded by each image with
+                latitude on the x-axis, and the longitude running along the y-axis. The left image depicts a day in early June, where the GPS data is fairly accurate.
+                The right image depicts a day in late August with a much higher temperature. This increase in temperature resulted in what we called “GPS drift”,
+                which gave us incredibly inaccurate coordinates.
+            </p>
+
+                <a href="./VineTech/Deviation.png" target="_blank">
+                    <img class="img-responsive mx-auto d-block" src="./VineTech/Deviation.png" alt="Crawford">
+                    <div class="caption">
+                        <p id="captionWhite">Image Count Per Bay</p>
+                    </div>
+                </a>
+
+            <p>
+
+                In addition to our GPS visuals, we also created some visuals that would show us a plot of our image count distribution. Each point is colored by
+                the number of images in that bay, and how much that number deviates from the average images per bay. The range for this day is +8 over to -8 under.
+                What this allows us to do is quickly glance at each day and determine the accuracy of how well we determined the row and bay numbers.
+
+            </p>
+
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a href="./VineTech/EvidentPost.jpg" target="_blank">
+                            <img class="img-responsive" src="./VineTech/EvidentPost.jpg" alt="EvidentPost">
+                            <div class="caption">
+                                <p id="caption">Image With A Clear Post</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a href="./VineTech/FalsePositivePost.jpg" target="_blank">
+                            <img class="img-responsive" src="./VineTech/FalsePositivePost.jpg" alt="FalsePositivePost">
+                            <div class="caption" id="caption">
+                                <p id="caption">Image With A Post In The Background</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                As a result of these data visuals, we determined that we needed a new way of assigning the row and bay numbers for each image. To do this we used a "post tagger". 
+                Our "post tagger" is a machine learning algorithm that (given some good test-data) is able to determine if a metal posts is in the image. This is used in conjunction
+                with the timestamp data from each image to map an image to a particular bay. After doing this, we achieved an approximate accuracy of 96%. 
+                This 4% of error can be for a variety of reasons, but the most likely is that it saw a post for another bay through the vines as shown on the right image.
+            </p>
+
+                <a href="./VineTech/HMM.png" target="_blank">
+                    <img class="img-responsive mx-auto d-block" src="./VineTech/HMM.png" alt="HMM">
+                    <div class="caption">
+                        <p id="captionWhite">Hidden-Markov Model</p>
+                    </div>
+                </a>
+
+
+            <p>
+                To address the accuracy issues with the “post-tagger”, we developed a Hidden-Markov Model that given the output of our post prediction model, is able to perform some
+                pattern matching to determine if there was a false negative or a false positive. This is done by providing the model with a “typical pattern”, which can be mathematically
+                determined based upon the total number of images for that given day. This was incredibly successful and allowed us to correct the 2019 and 2020 datasets, and with a little
+                bit of work, next years team should be able to quickly implement this for 2021, 2022, and by that point 2023 data as well. Additional work is necessary because the rover images
+                are formatted differently, and they will need to do more work to determine the image timestamps and other metadata from the new image structure.
+            </p>
+
+            <h3>
+                Goal 2: Implement Adaptive Cruise Control
+            </h3>
+
+            <p>
+                By comparing the current number of wheel rotations against an ideal number of wheel rotations in a given amount of time, we could decipher how we need to modify our speed 
+                in order to meet our ideal speed. This was achieved by using the rover's motor encoders, but we quickly that the encoders provided inconsistent readings depending on the speed. 
+                At slower speeds, it was completely accurate, but upon speeding up, the motor encoders would become inconsistent. With these inconsistent readings, it became impossible to 
+                utilize the motor encoders to solve this solution. This knowledge caused us to shift our solution to incorporate the rover's GPS. This process worked similarly to how the motor
+                encoders calculated speed, but instead of utilizing wheel rotations, we utilized previous and current GPS coordinates.
+            </p>
+
+            <h3>
+                Goal 3: Implement Autonomous Turning
+            </h3>
+
+            <a href="./VineTech/InitialState.jpg" target="_blank">
+                <img class="img-responsive mx-auto d-block" src="./VineTech/InitialState.jpg" alt="InitialState">
+            </a>
+            
+            <br>
+
+            <p>
+                Because we do not have a vineyard at George Fox University, we set up partitions in the Maker Hub to simulate vineyard rows.
+                In this image, the rover autonomously navigated itself to the end of the simulated row and simply stopped when it could no
+                longer see any rows on either side of it.
+            </p>
+
+            <br>
+
+            <a href="./VineTech/RoverViewOfLiDAR.png" target="_blank">
+                <img class="img-responsive mx-auto d-block" src="./VineTech/RoverViewOfLiDAR.png" alt="RoverViewOfLiDAR">
+            </a>
+
+            <br>
+
+            <p>
+                This is how the rover views the LiDAR data. The box in the middle is the rover and the clusters on either side are the rows.
+                The rover determines these clusters by using a machine learning algorithm called a Gaussian Mixture Model, which takes the amount
+                of clusters to look for and then automatically deciphers the best clusters from the data provided. Using this method, the rover can
+                decipher where the majority of points lie in relation to itself, which is useful for deciding when to turn.
+            </p>
+
+            <br>
+
+            <a href="./VineTech/TurningThreshold.png" target="_blank">
+                <img class="img-responsive mx-auto d-block" src="./VineTech/TurningThreshold.png" alt="TurningThreshold">
+            </a>
+            
+            <br>
+
+
+            <p>
+                Once the majority of points are behind the rover, that means it has reached the end of a row. It then algorithmically determines
+                a pivot point, which will be the end of the row for whichever side the rover is turning towards. In this example, that pivot point
+                is the green circle that represents the end of the right row.
             </p>
 
             <br>
 
 
-            <div class="row">
-                <div class="col-md-4">
-                    <a href="./VineTechPhotos/Rover_Outside.png" target="_blank">
-                        <img class="img-responsive" src="./VineTechPhotos/Rover_Outside.png" alt="RoverOutside">
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="./VineTechPhotos/Rover_Front.png" target="_blank">
-                        <img class="img-responsive" src="./VineTechPhotos/Rover_Front.png" alt="RoverFront">
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="./VineTechPhotos/Rover_Inside.png" target="_blank">
-                        <img class="img-responsive" src="./VineTechPhotos/Rover_Inside.png" alt="RoverInside">
-                    </a>
-                </div>
-            </div>
+            <a href="./VineTech/LiDAROutputDuringTurn.png" target="_blank">
+                <img class="img-responsive mx-auto d-block" src="./VineTech/LiDAROutputDuringTurn.png" alt="LiDAROutputDuringTurn">
+            </a>
 
             <br>
+
+
+            <p>
+                During a turn, the rover utilizes the pivot to adjust its angle based upon its distance from that point. After both rows are once again
+                visible, the rover ceases to turn and continues to intelligently navigates itself down the row.
+            </p>
+
+            <br>
+
+
+            <a href="./VineTech/SuccessfulTurn.gif" target="_blank">
+                <img class="img-responsive mx-auto d-block" src="./VineTech/SuccessfulTurn.gif" alt="SuccessfulTurn">
+            </a>
+
+            <br>
+                
+            <p>
+                In this successful turn, we can see the rover reach the end of a row, pick its pivot, adjust its turning angle based upon that pivot and,
+                once it can perceive both sides of a row again, continue intelligently navigating forward to its next goal.
+            </p>
 
             <hr>
 
@@ -99,7 +360,7 @@
 
             <br>
 
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-md-4">
                     <a href="./CSPhotos/1.png" target="_blank">
                         <img class="img-responsive" src="./CSPhotos/1.png" alt="Title Page">
@@ -206,7 +467,7 @@
 
 
             <h3>
-                Pandemic2020 - Software Engineering: Spring 2020
+                Pandemic 2020 - Software Engineering: Spring 2020
             </h3>
 
             <p>

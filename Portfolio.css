@@ -6,6 +6,20 @@ body {
     background-color: rgb(27, 27, 27);
 }
 
+#caption {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 11pt;
+    color: black;
+    text-align: center;
+}
+
+#captionWhite {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 11pt;
+    color: white;
+    text-align: center;
+}
+
 h1 {
     color: white;
     text-align: left;
