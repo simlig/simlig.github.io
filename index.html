@@ -11,6 +11,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <body>
+    <!-- Navbar -->
+    <header id="sticky-header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse">
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Resume</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
     <div class="container-sm">
         <div class="m-5">
     
@@ -18,8 +38,9 @@
                 <img class="img-thumbnail mx-auto d-block" alt="avatar1" src="SamProfile.jpg" />
 
                 <h1 style="text-align: center">Hi, I'm Sam</h1>      
-                <p>I'm a software engineer who loves programming, swimming, history, and hiking. This site
-                    represents a selection of my personal and professional accomplishments. If you have any questions
+                <p>I am a people-oriented software engineer with a strong focus on building positive relationships and
+                    leveraging unique talents to drive team success. I love programming, swimming, history, and hiking.
+                    This site represents a selection of my personal and professional accomplishments. If you have any questions
                     or just want to connect, you can reach me via
                     <a href="https://www.linkedin.com/in/samuel-imlig" target="_blank">LinkedIn</a>.
                 </p>
@@ -78,20 +99,20 @@
                     </div>
                     <div class="col-md-4">
                         <div class="thumbnail">
-                            <a href="./VineTech/Rover_Front.png" target="_blank">
-                                <img class="img-responsive" src="./VineTech/Rover_Front.png" alt="RoverFront">
+                            <a href="./VineTech/Rover_Inside.png" target="_blank">
+                                <img class="img-responsive" src="./VineTech/Rover_Inside.png" alt="RoverInside">
                                 <div class="caption">
-                                    <p id="caption">The Front Of The Rover</p>
+                                    <p id="caption">Inside of the Rover</p>
                                 </div>
                             </a>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="thumbnail">
-                            <a href="./VineTech/Rover_Inside.png" target="_blank">
-                                <img class="img-responsive" src="./VineTech/Rover_Inside.png" alt="RoverInside">
+                            <a href="./VineTech/Rover_Front.png" target="_blank">
+                                <img class="img-responsive" src="./VineTech/Rover_Front.png" alt="RoverFront">
                                 <div class="caption">
-                                    <p id="caption">Inside of the Rover</p>
+                                    <p id="caption">The Front Of The Rover</p>
                                 </div>
                             </a>
                         </div>
@@ -112,6 +133,9 @@
                 and implement autonomous turning, so that the rover could navigate itself autonomously through the vineyard, instead
                 of just a singular row. 
             </p>
+
+            <br>
+            
                 
             <h3>
                 Goal 1: Fix the inaccurate bay assignments
@@ -150,10 +174,11 @@
                 </div>
             </div>
 
-            <p>
+            <br>
 
+            <p>
                 Our specific vineyard was separated into 21 rows, each with 21 bays. Bays are separated from one another by a metal post.
-                The left image is an example of such a metal post from the rover's view. The middle image is an example
+                The first image is an example of such a metal post from the rover's view. The middle image is an example
                 of our spreadsheet detailing the weights collected during harvest. After each harvest, the spreadsheet
                 is taken and the weights recorded are associated with the images from that specific bay. This allows us to start making
                 predictions based upon previously recorded images and weights. When these images are incorrectly labeled, 
@@ -163,8 +188,10 @@
                 photos and our GPS meta data becomes inaccurate as a result.
             </p>
 
+            <br>
+
             <div class="row justify-content-center">
-                <div class="col-md-4">
+                <div class="col-lg">
                     <div class="thumbnail">
                         <a href="./VineTech/61Degrees.png" target="_blank">
                             <img class="img-responsive" src="./VineTech/61Degrees.png" alt="61Degrees">
@@ -174,7 +201,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg">
                     <div class="thumbnail">
                         <a href="./VineTech/96Degrees.png" target="_blank">
                             <img class="img-responsive" src="./VineTech/96Degrees.png" alt="96Degrees">
@@ -188,10 +215,12 @@
 
             <p>
                 The two images shown here are some example plots from our validation scripts. These images are showing the GPS data recorded by each image with
-                latitude on the x-axis, and the longitude running along the y-axis. The left image depicts a day in early June, where the GPS data is fairly accurate.
-                The right image depicts a day in late August with a much higher temperature. This increase in temperature resulted in what we called “GPS drift”,
+                latitude on the x-axis, and the longitude running along the y-axis. The first image depicts a day in early June, where the GPS data is fairly accurate.
+                The last image depicts a day in late August with a much higher temperature. This increase in temperature resulted in what we called “GPS drift”,
                 which gave us incredibly inaccurate coordinates.
             </p>
+
+            <br>
 
                 <a href="./VineTech/Deviation.png" target="_blank">
                     <img class="img-responsive mx-auto d-block" src="./VineTech/Deviation.png" alt="Crawford">
@@ -200,16 +229,17 @@
                     </div>
                 </a>
 
+            
             <p>
-
                 In addition to our GPS visuals, we also created some visuals that would show us a plot of our image count distribution. Each point is colored by
                 the number of images in that bay, and how much that number deviates from the average images per bay. The range for this day is +8 over to -8 under.
                 What this allows us to do is quickly glance at each day and determine the accuracy of how well we determined the row and bay numbers.
-
             </p>
 
+            <br>
+
             <div class="row justify-content-center">
-                <div class="col-md-4">
+                <div class="col-lg">
                     <div class="thumbnail">
                         <a href="./VineTech/EvidentPost.jpg" target="_blank">
                             <img class="img-responsive" src="./VineTech/EvidentPost.jpg" alt="EvidentPost">
@@ -219,7 +249,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg">
                     <div class="thumbnail">
                         <a href="./VineTech/FalsePositivePost.jpg" target="_blank">
                             <img class="img-responsive" src="./VineTech/FalsePositivePost.jpg" alt="FalsePositivePost">
@@ -235,8 +265,10 @@
                 As a result of these data visuals, we determined that we needed a new way of assigning the row and bay numbers for each image. To do this we used a "post tagger". 
                 Our "post tagger" is a machine learning algorithm that (given some good test-data) is able to determine if a metal posts is in the image. This is used in conjunction
                 with the timestamp data from each image to map an image to a particular bay. After doing this, we achieved an approximate accuracy of 96%. 
-                This 4% of error can be for a variety of reasons, but the most likely is that it saw a post for another bay through the vines as shown on the right image.
+                This 4% of error can be for a variety of reasons, but the most likely is that it saw a post for another bay through the vines as shown on the last image.
             </p>
+
+            <br>
 
                 <a href="./VineTech/HMM.png" target="_blank">
                     <img class="img-responsive mx-auto d-block" src="./VineTech/HMM.png" alt="HMM">
@@ -251,7 +283,7 @@
                 pattern matching to determine if there was a false negative or a false positive. This is done by providing the model with a “typical pattern”, which can be mathematically
                 determined based upon the total number of images for that given day. This was incredibly successful and allowed us to correct the 2019 and 2020 datasets, and with a little
                 bit of work, next years team should be able to quickly implement this for 2021, 2022, and by that point 2023 data as well. Additional work is necessary because the rover images
-                are formatted differently, and they will need to do more work to determine the image timestamps and other metadata from the new image structure.
+                are formatted differently, so the image timestamps and other metadata from the new image structure will need to  be determined.
             </p>
 
             <h3>
@@ -393,7 +425,7 @@
             </h3>
 
             <p>
-                I assist and encourage students to reach their academic goals by teaching them core Computer Science concepts
+                I assisted and encouragec students to reach their academic goals by teaching them core Computer Science concepts
                 and empathizing with them when they fall short of those goals. Key concepts conveyed are data structures,
                 analysis of algorithms, parallel programming paradigms, relational databases, front-end design, and programming
                 style best practices. 
