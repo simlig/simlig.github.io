@@ -36,7 +36,6 @@ h2 {
     color: white;
     text-align: left;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
 }
 
 h3 {
@@ -46,7 +45,7 @@ h3 {
 }
 
 h4 {
-    color: white;
+    color: rgb(205, 226, 12);;
     text-align: left;
 }
 
@@ -54,6 +53,12 @@ p {
     color: rgb(147, 202, 142);
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-size: 11pt;
+}
+
+li {
+    margin-left: 3%;
+    color: rgb(205, 226, 12);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 div {
