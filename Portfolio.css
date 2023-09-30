@@ -1,8 +1,4 @@
-body {
-    background-color: rgb(27, 27, 27);
-}
-
-.jumbotron {
+body, .jumbotron {
     background-color: rgb(27, 27, 27);
 }
 
@@ -12,6 +8,38 @@ body {
     color: black;
     text-align: center;
 }
+
+.contained {
+    position: relative;
+  }
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+  
+  .transitional-opacity {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .contained:hover .image {
+    opacity: 0.3;
+  }
+  
+  .contained:hover .transitional-opacity {
+    opacity: 1;
+  }
 
 #sticky-header {
     position: sticky;
@@ -26,19 +54,17 @@ body {
     text-align: center;
 }
 
+.text {
+    font-size: 12pt;
+}
+
 h1 {
     color: white;
-    text-align: left;
     font-family:'Times New Roman', Times, serif;
+    text-align: center;
 }
 
-h2 {
-    color: white;
-    text-align: left;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-h3 {
+h2, h3{
     color: white;
     text-align: left;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
